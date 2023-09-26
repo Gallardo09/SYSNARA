@@ -1,0 +1,216 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.fw-bolder{
+    margin-top: 7px;
+    justify-content: center; /* Alineación horizontal */
+    text-align: center;
+    color: #0c5aa8;
+}
+
+.borderpanel{
+    padding: 5px 10px 10px 3%;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* border: solid 2px black; */
+    position: relative;
+}
+
+.borderpanel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96.5%;
+    height: 100%;
+    z-index: -1;
+    /* From https://css.glass COLOR DE DIV GLASS TRANSPARENTE*/
+    background: rgba(208, 209, 214, 0.205);
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(186, 187, 197, 0.507);
+  } 
+i{
+    padding-top: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    width: 25px; /*ancho de iconos */
+    font-size: 15px;
+}
+.col-md-2{
+    margin-right: 2%;
+    
+}
+.form-select{
+    font-size: 14px;
+}
+
+/* ID Grado Automatico*/
+div.col-md-2:first-of-type{ 
+    width: 25vh;
+}
+div.col-md-2:nth-of-type(2) { 
+    width: 15vh;
+}
+/*Select seccion*/
+div.col-md-2:nth-of-type(4) { 
+    width: 15vh;
+}
+/*Select jornada*/
+div.col-md-2:nth-of-type(5) { 
+    width: 23vh;
+}
+/*Select sistema*/
+div.col-md-2:nth-of-type(6) { 
+    width: 28vh;
+}
+
+/*FILA 2*/
+/*Select Modalidad*/
+.fila2 div.col-md-2:first-of-type{ 
+    width: 90vh;
+}
+
+.fila2{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.col-md-3{/*Especio entre select fila2*/
+    margin-right: 1.5%;
+}
+
+.idgrado{
+    height: 22px;
+}
+.buttonguardar button {
+    width: 80vh; /* Ajusta el ancho de los botones aquí */
+    height: 30px;
+}
+  
+/*POSICION DE LOS BOTONES*/
+.col-md-4{
+    padding-top: 15px;
+    margin-right: 10%;
+}
+
+.btn-primary{
+    position: relative;
+    top: 60%;
+    width: 15px;
+    display: inline-flex;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+/*VALIDACIONES***********************/
+.green-icon{
+    color: rgb(7, 209, 7)
+}
+
+.red-icon{
+    color: red;
+}
+/*DATA GRID*/
+.ag-theme-alpine{
+    align-items: center;
+    text-align: center;
+}
+.headerName{
+    align-items: center;
+    text-align: center;
+}
+.grid-header{
+    text-align: center;
+}
+
+/*TABLA DE DATOS*/
+.dbpanel{
+    margin-right: 2%;
+}
+.tabletitle{
+    text-align: center;
+    font-size: 25px;
+    color: #0c5aa8;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold; 
+}
+.headcolum{ /*Emcabezado de la tabla*/
+    position: sticky;
+    top: 0;
+    font-size: 12px;
+    background-color: #0c5aa8;
+    color: white;
+    z-index: 1;
+}
+
+/*BARRA DE DESPLAZAMIENTO*/
+.table-wrapper {
+    max-height: 350px; /* ajusta la altura según tus necesidades */
+    overflow-y: auto; 
+    overflow-y: scroll;
+    margin-left: 2%;
+}
+
+.headcolum tr th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.table{
+    text-align: center;
+    border: 1px solid #0c5aa8;
+    border-collapse: collapse;
+    width: 100%;  /* ajusta el ancho según tus necesidades */
+    align-items: center;
+    position: relative;
+}
+
+
+.table-rounded {
+    border-radius: 5px;
+    overflow: hidden;
+}
+.table tbody tr td i{
+    font-size: 20px; /*Tamaño de los iconos dentro de la tabla*/
+}
+.la-edit{
+    color: #00ad00;
+}
+.la-trash-alt{
+    color: red;
+}
+.las{
+    cursor: pointer;
+}
+
+.table tbody tr td{
+    /* tamaño de letra en la tabla */
+    font-size: 14px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+}
+/*VALIDACIONES*/
+.input-group input {
+    align-self: center;
+  }
+  
+.input-group-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    font-size: 25px;
+  }
+  
+.green-icon{
+    color: rgb(7, 209, 7)
+}
+
+.red-icon{
+    color: red;
+}

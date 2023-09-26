@@ -1,0 +1,102 @@
+<h3 class="fw-bolder">REGISTRAR DOCENTES</h3>
+<form class="container text-center" (ngSubmit)="RegistrarDocentes()">
+  <!--FILA 1  -->
+    <div class="row">
+            <!-- BUTTON BUSCAR -->
+            <div class="btn-box">
+              <button class="btn btn-submit btnbuscar" type="submit">Buscar</button>
+            </div>
+            <!-- <div class="group col">
+              <div class="btn-box"><a class="btn btn-link" target="_blank">Buscar</a></div>
+              <hr class="sep"/>
+            </div> -->
+    </div>
+  <!-- FILA 2 -->
+      <div class="row">
+            <!--DIV IDENTIDAD-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Identidad</label>
+            </div>
+            <!--DIV ID ENCARGADO-->
+            <div class="group col">
+              <input type="text" [disabled]="true" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>ID Encargado</label>
+            </div>
+            <!--DIV NOMBRE DEL ENCARGADO-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Nombre del Encargado</label>
+            </div>
+            <!--DIV PARENTESCO-->
+            <div class="group col">
+              <select required="required">
+                  <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
+                  <option>PADRE</option>
+                  <option>MADRE</option>
+                  <option>HERMANO(A)</option>
+                  <option>ABUELO(A)</option>
+                  <option>TIO(A)</option>
+                  <option>PRIMO(A)</option>
+                  <option>ENCARGADO(A)</option>
+            </select><span class="highlight"></span><span class="bar"></span>
+              <label>Parentesco</label>
+            </div>
+            <!--DIV PROFESIÓN-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Profesión</label>
+            </div>
+            <!--DIV GENERO-->
+            <div class="group col">
+              <select required="required">
+                  <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
+                  <option>FEMENINO</option>
+                  <option>MASCULINO</option>
+            </select><span class="highlight"></span><span class="bar"></span>
+              <label>Genero</label>
+            </div>
+          </div>
+  <!-- FILA 3 -->
+      <div class="row">
+            <!--DIV CELULAR-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Celular</label>
+            </div>
+            <!--DIV CELULAR-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Telefono</label>
+            </div>
+            <!--DIV CORREO-->
+            <div class="group col">
+              <input type="email" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Correo</label>
+            </div>
+            <!--DIV DIRECCIÓN-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Dirección</label>
+          </div>
+            <!-- <div class="group col">
+              <textarea type="textarea" rows="5" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
+              <label>Dirección</label>
+            </div> -->
+            <!--DIV OBSERVACIÓN-->
+            <div class="group col">
+              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <label>Observación</label>
+          </div>
+      </div>
+  <!-- FILA 4 -->
+      <div class="row">
+              <div class="btn-box row justify-content-center">
+                  <button class="btn btn-submit col-md-2" type="submit">Guardar</button>
+                  <button class="btn btn-cancel col-md-2" type="button">Editar</button>
+                  <button class="btn btn-cancel col-md-2" type="button">Limpiar</button>
+                  <button class="btn btn-cancel col-md-2" type="button">Borrar</button>
+                  <button class="btn btn-cancel col-md-2" type="button">Cancelar</button>
+              </div>
+        </div>
+</form>

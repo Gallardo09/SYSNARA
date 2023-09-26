@@ -1,0 +1,202 @@
+<h3 class="fw-bolder">REGISTRAR GRADOS Y SECCIONES</h3>
+<form [formGroup]="formgradosysecciones" (ngSubmit)="RegistrarGradoySeccion()" class="row g-3" >
+<div class="borderpanel">
+    <div class="row">
+        <!--SELECT ID GRADO -->
+        <div class="col-md-2">
+            <label for="idgrado" class="col-form-label">ID Grado:</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                    <i class="las la-key"
+                        [class.green-icon]="this.formgradosysecciones.get('idgrado')?.valid || idgrado"
+                        [class.red-icon]="this.formgradosysecciones.get('idgrado')?.invalid && !idgrado">
+                    </i>
+                    </span>
+                    <input type="text" formControlName="idgrado" [(ngModel)]="idgrado" readonly class="form-control idgrado" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" [disabled]="!selectedYear || !selectedGrado || !selectedSeccion || !selectedSistema" value="{{ idgrado }}">
+                </div>                  
+        </div>
+        <!--SELECT AÑO -->
+        <div class="col-md-2">
+            <label for="selectedYear" class="col-form-label">Año inicial:</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="las la-calendar-check"
+                        [class.green-icon]="this.formgradosysecciones.get('selectedYear')?.valid"
+                        [class.red-icon]="this.formgradosysecciones.get('selectedYear')?.invalid && this.formgradosysecciones.get('selectedYear')?.touched"></i>
+                    </span>
+                        <select class="form-select" formControlName="selectedYear" [(ngModel)]="selectedYear" (ngModelChange)="actualizarIdGrado()" aria-label="Default select example">
+                            <option selected>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                        </select> 
+                </div>
+            </div>
+            <!--SELECT GRADO -->
+            <div class="col-md-2">
+                <label for="selectedGrado" class="col-form-label">Grado:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-chart-bar"
+                            [class.green-icon]="this.formgradosysecciones.get('selectedGrado')?.valid"
+                            [class.red-icon]="this.formgradosysecciones.get('selectedGrado')?.invalid && this.formgradosysecciones.get('selectedGrado')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="selectedGrado" [(ngModel)]="selectedGrado" (change)="actualizarIdGrado()" aria-label="Default select example">
+                                <option selected>KINDERGARTEN</option>
+                                <option>FIRST GRADE</option>
+                                <option>SECOND GRADE</option>
+                                <option>PREPARATORY</option>
+                                <option>THIRD GRADE</option>
+                                <option>FOURTH GRADE</option>
+                                <option>FIFTH GRADE</option>
+                                <option>SIXTH GRADE</option>
+                                <option>SEVENTH GRADE</option>
+                                <option>EIGHTH GRADE</option>
+                                <option>NINTH GRADE</option>
+                                <option>TENTH GRADE</option>
+                                <option>ELEVENTH GRADE</option>
+                                <option>TWELVE GRADE</option>
+                            </select> 
+                    </div>
+            </div>
+            <!--SELECT SECCIÓN -->
+            <div class="col-md-2">
+                <label for="selectedSeccion" class="col-form-label">Sección:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-list-ol"
+                            [class.green-icon]="this.formgradosysecciones.get('selectedSeccion')?.valid"
+                            [class.red-icon]="this.formgradosysecciones.get('selectedSeccion')?.invalid && this.formgradosysecciones.get('selectedSeccion')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="selectedSeccion" [(ngModel)]="selectedSeccion" (change)="actualizarIdGrado()" aria-label="Default select example">
+                                <option selected>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>E</option>
+                                <option>U</option>
+                            </select> 
+                    </div>
+            </div>
+            <!--SELECT JORNADA -->
+            <div class="col-md-2">
+                <label for="jornada" class="col-form-label">Jornada:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-stream"
+                            [class.green-icon]="this.formgradosysecciones.get('jornada')?.valid"
+                            [class.red-icon]="this.formgradosysecciones.get('jornada')?.invalid && this.formgradosysecciones.get('jornada')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="jornada" [(ngModel)]="jornada" aria-label="Default select example">
+                                <option selected>MATUTINA</option>
+                                <option >VESPERTINA</option>
+                                <option >ISEMED</option>
+                                <option >VIRTUAL</option>
+                            </select> 
+                    </div>
+            </div>
+            <!--SELECT SISTEMA -->
+            <div class="col-md-2">
+                <label for="selectedSistema" class="col-form-label">Sistema:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-globe-americas"
+                            [class.green-icon]="this.formgradosysecciones.get('selectedSistema')?.valid"
+                            [class.red-icon]="this.formgradosysecciones.get('selectedSistema')?.invalid && this.formgradosysecciones.get('selectedSistema')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="selectedSistema" [(ngModel)]="selectedSistema" (change)="actualizarIdGrado()" aria-label="Default select example">
+                                <option selected>INTERNACIONAL </option>
+                                <option>ANGLOSAJÓN</option>
+                            </select> 
+                    </div>
+            </div>
+    </div>
+    <!-- FILA 2 -->
+    <div class="row fila2 justify-content-between">
+                    <!--SELECT MODALIDAD -->
+                    <div class="col-md-2">
+                        <label for="selectedModalidad" class="col-form-label">Modalidad:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="las la-clipboard-list"
+                                    [class.green-icon]="this.formgradosysecciones.get('selectedModalidad')?.valid"
+                                    [class.red-icon]="this.formgradosysecciones.get('selectedModalidad')?.invalid && this.formgradosysecciones.get('selectedModalidad')?.touched"></i>
+                                </span>
+                                    <select class="form-select" formControlName="selectedModalidad" [(ngModel)]="selectedModalidad" aria-label="Default select example">
+                                        <option selected>&nbsp;EDUCACIÓN PRE-BÁSICA</option>
+                                        <option value="1">&nbsp;I CICLO DE EDUCACIÓN BÁSICA</option>
+                                        <option value="2">&nbsp;II CICLO DE EDUCACIÓN BÁSICA</option>
+                                        <option value="3">&nbsp;III CICLO DE EDUCACIÓN BÁSICA</option>
+                                        <option value="4">&nbsp;BACHILLERATO TÉCNICO PROFESIONAL</option>
+                                        <option value="5">&nbsp;BACHILLERATO TÉCNICO PROFESIONAL EN INFORMÁTICA</option>
+                                        <option value="6">&nbsp;BACHILLERATO PROFESIONAL EN CIENCIAS Y HUMANIDADES (BILINGÜE)</option>
+                                    </select> 
+                            </div>
+                    </div>
+            <!-- LIMPIAR -->
+            <!-- LIMPIAR -->
+            <div class="col-md-4 col-lg-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-end align-items-end buttonguardar">
+                <button [disabled]="formgradosysecciones.invalid" class="btn btn-primary widthButlimpiar" type="button" (click)="limpiarForm()">
+                    <span>
+                    <i class="fa-solid fa-broom"></i>
+                    </span>
+                    &nbsp;Limpiar
+                </button>
+                <button [disabled]="formgradosysecciones.invalid" class="btn btn-primary widthButAgregar" type="button" (click)="agregarGrado()">
+                    <span>
+                    <i class="fa-regular fa-floppy-disk"></i>
+                    </span>
+                    &nbsp;Guardar
+                </button>
+                </div>
+            </div>  
+    </div>
+    <!-- FILA 3
+    <div class="row fila3">
+
+    </div>     -->
+</div>
+</form>
+<!-- DATA GRID -->
+<!-- BASE DE DATOS GRID -->
+<div class="dbpanel">
+    <p class="tabletitle">GRADOS REGISTRADOS</p>
+    <div class="table-wrapper">
+        <table class="table table-rounded">
+            <thead class="headcolum">
+                <tr>
+                    <th scope="col">Año</th>
+                    <th scope="col">ID Grado</th>
+                    <th scope="col">Grado</th>
+                    <th scope="col">Sección</th>
+                    <th scope="col">Jornada</th>
+                    <th scope="col">Sistema</th>
+                    <th scope="col">Modalidad</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+            </thead>
+            <tbody class="filastable">
+                <tr *ngFor="let ContGrados of listagrados">
+                    <td>{{ContGrados.selectedYear}}</td>
+                    <td>{{ContGrados.idgrado}}</td>
+                    <td>{{ContGrados.selectedGrado}}</td>
+                    <td>{{ContGrados.selectedSeccion}}</td>
+                    <td>{{ContGrados.jornada}}</td>
+                    <td>{{ContGrados.selectedSistema}}</td>
+                    <td>{{ContGrados.selectedModalidad}}</td>
+                    <td><i class="las la-edit"></i></td>
+                    <td><i class="las la-trash-alt"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <ag-grid-angular class="ag-theme-alpine" style="height: 480px; width: 800px;" #myDataGrid [rowData]="rowdata" 
+     [columnDefs]="columnDefs">
+    </ag-grid-angular> -->
+</div>
+  

@@ -1,0 +1,52 @@
+{
+  "name": "imava",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^16.0.5",
+    "@angular/common": "^16.0.5",
+    "@angular/compiler": "^16.0.5",
+    "@angular/core": "^16.0.5",
+    "@angular/forms": "^16.0.5",
+    "@angular/platform-browser": "^16.0.5",
+    "@angular/platform-browser-dynamic": "^16.0.5",
+    "@angular/router": "^16.0.5",
+    "@fortawesome/angular-fontawesome": "^0.12.1",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@sweetalert2/ngx-sweetalert2": "^12.1.0",
+    "ag-grid-angular": "^29.3.5",
+    "ag-grid-community": "^29.3.5",
+    "ag-grid-enterprise": "^29.3.5",
+    "bootstrap": "^5.3.0-alpha3",
+    "line-awesome": "^1.3.0",
+    "ngx-toastr": "^17.0.2",
+    "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.5",
+    "tailwindcss": "^2.2.19",
+    "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
+    "zone.js": "~0.13.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.0.5",
+    "@angular/cli": "~16.0.5",
+    "@angular/compiler-cli": "^16.0.5",
+    "@types/jasmine": "~4.3.0",
+    "jasmine-core": "~4.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "typescript": "~4.9.4"
+  }
+}

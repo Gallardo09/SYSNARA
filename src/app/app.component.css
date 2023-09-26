@@ -1,0 +1,197 @@
+.sk-cube-grid {
+    width: 60px;
+    height: 60px;
+    margin: 100px auto;
+    margin-top: 20%;
+    padding-right: 2px;
+  }
+  
+  .sk-cube-grid .sk-cube {
+    width: 33%;
+    height: 33%;
+    background-color: hsla(214, 74%, 53%, 0.596);
+    float: left;
+    -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+            animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+  }
+  .sk-cube-grid .sk-cube1 {
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  .sk-cube-grid .sk-cube2 {
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s; }
+  .sk-cube-grid .sk-cube3 {
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s; }
+  .sk-cube-grid .sk-cube4 {
+    -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s; }
+  .sk-cube-grid .sk-cube5 {
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  .sk-cube-grid .sk-cube6 {
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s; }
+  .sk-cube-grid .sk-cube7 {
+    -webkit-animation-delay: 0s;
+            animation-delay: 0s; }
+  .sk-cube-grid .sk-cube8 {
+    -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s; }
+  .sk-cube-grid .sk-cube9 {
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  
+  @-webkit-keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+      -webkit-transform: scale3D(1, 1, 1);
+              transform: scale3D(1, 1, 1);
+    } 35% {
+      -webkit-transform: scale3D(0, 0, 1);
+              transform: scale3D(0, 0, 1); 
+    }
+  }
+  
+  @keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+      -webkit-transform: scale3D(1, 1, 1);
+              transform: scale3D(1, 1, 1);
+    } 35% {
+      -webkit-transform: scale3D(0, 0, 1);
+              transform: scale3D(0, 0, 1);
+    } 
+  }
+
+  /*DASHBOARD*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.barranav{
+  padding: 0px 0px 0px 0px; /*Top, Right, botton, left*/
+}
+
+.nameinst{
+  padding: 2px 5px 5px 5px; /*Top, Right, botton, left*/
+  background: rgb(4,5,25);
+  background: linear-gradient(31deg, rgba(4,5,25,1) 44%, rgba(8,8,96,1) 81%, rgba(9,9,121,1) 100%);
+  display: flex; /*Alinear texto horizontalmente*/
+  /*justify-content: space-between; /*Coloca los elementos a los extremos de la página*/
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.logo{
+  margin-left: 1vh;
+  width: 45px;
+  height: 45px;
+  float: left; /*Alinear texto a la izquierda*/
+}
+.institute{ 
+  font-size: 25px;
+  margin-top: 5px;
+  margin-right: 50px;
+  color: #fff;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+/*------- M E N U --------*/
+.navbar {
+  background: rgb(4, 5, 25);
+  background: linear-gradient(176deg, rgba(4, 5, 25, 1) 44%, rgba(8, 8, 96, 1) 81%, rgba(9, 9, 121, 1) 100%);
+  
+  display: fixed;
+  width: 5%;
+  height: 100%;
+  z-index: 999;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 1);
+  margin-top: 0;
+  position: absolute;
+  flex-direction: column;
+  transition: 0.5s;
+}
+
+.navbar:hover {
+  width: 16%;
+}
+
+.navbar ul {
+  margin-top: 20px;
+  margin-bottom: 10vh;
+  width: 130%;
+  position: static;
+  overflow: hidden; /* Oculta los elementos que desbordan */
+}
+
+.navbar ul li {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  text-decoration: none;
+  display: flex;
+  color: #fff;
+  white-space: nowrap; /* Evita que el contenido se desborde */
+  width: 100px; /* Ancho fijo para mantener el tamaño */
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  top: 0;
+  margin-top: 0;
+  padding-top: 3px;
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity 0.2s;
+  position: relative;
+  width: 100%; /* Ancho fijo para mantener el tamaño */
+}
+
+.navbar ul:hover li a {
+  opacity: 1;
+}
+.navbar ul li:hover a {
+  color: black;
+}
+.navbar ul li:hover i {
+  color: black;
+}
+.navbar ul li:hover {
+  background-color: white;
+  width: 75.5%; /*Ancho blanco*/
+  transition: 0.3s;
+  box-shadow: 5px 0 0 0 white;
+  border-radius: 2px;
+}
+.navbar ul li i {
+  font-size: 30px;
+  color: #fff;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  top: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+  vertical-align: middle;
+}
+ /*--------- SECCIONES ----------*/
+
+ .componentes {
+  /*border: 2px solid black;*/
+  width: 95%;
+  min-width: calc(100% - 5%);
+  height: calc(100% - 5px); /* Resta la altura del menú */ 
+  position: absolute;
+  bottom: -11%;
+  left: 5%;
+  top: 8%;
+  z-index: -2;
+  border: solid 1px black;
+  /* background-color: rgb(228, 228, 228); */
+  background-color: #fdfdfd;
+}

@@ -1,0 +1,225 @@
+<h3 class="fw-bolder">REGISTRAR ASIGNATURAS</h3>
+<form [formGroup]="formasignaturas" (ngSubmit)="RegistrarAsignatura()" class="row g-3" >
+<div class="borderpanel">
+    <div class="row">
+        <!--SELECT AÑO -->
+        <div class="col-md-2">
+            <label for="selectedYear" class="col-form-label">Año inicial:</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="las la-calendar-check"
+                        [class.green-icon]="this.formasignaturas.get('selectedYear')?.valid"
+                        [class.red-icon]="this.formasignaturas.get('selectedYear')?.invalid && this.formasignaturas.get('selectedYear')?.touched"></i>
+                    </span>
+                        <select class="form-select" formControlName="selectedYear" [(ngModel)]="selectedYear" (ngModelChange)="actualizarIdAsignatura()" aria-label="Default select example">
+                            <option selected>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                        </select> 
+                </div>
+            </div>
+            <!--SELECT ID GRADO -->
+            <div class="col-md-2">
+                <label for="idgrado" class="col-form-label">ID Grado:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-key"
+                            [class.green-icon]="this.formasignaturas.get('idgrado')?.valid"
+                            [class.red-icon]="this.formasignaturas.get('idgrado')?.invalid && this.formasignaturas.get('idgrado')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="idgrado" [(ngModel)]="idgrado" aria-label="Default select example">
+                                <option selected>7MO-A-2023</option>
+                                <option>7MO-B-2024</option>
+                                <option>12BTPAH-U-2024</option>
+                            </select> 
+                    </div>
+            </div>
+            <!--SELECT GRADO -->
+            <div class="col-md-2">
+                <label for="selectedGrado" class="col-form-label">Grado:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-chart-bar"
+                            [class.green-icon]="this.formasignaturas.get('selectedGrado')?.valid"
+                            [class.red-icon]="this.formasignaturas.get('selectedGrado')?.invalid && this.formasignaturas.get('selectedGrado')?.touched"></i>
+                        </span>
+                        <select class="form-select" formControlName="selectedGrado" [(ngModel)]="selectedGrado" (ngModelChange)="actualizarIdAsignatura()" aria-label="Default select example">
+                            <option selected>KINDERGARTEN</option>
+                            <option>PREPARATORY</option>
+                            <option>FIRST GRADE</option>
+                            <option>SECOND GRADE</option>
+                            <option>THIRD GRADE</option>
+                            <option>FOURTH GRADE</option>
+                            <option>FIFTH GRADE</option>
+                            <option>SIXTH GRADE</option>
+                            <option>SEVENTH GRADE</option>
+                            <option>EIGHTH GRADE</option>
+                            <option>NINTH GRADE</option>
+                            <option>TENTH GRADE</option>
+                            <option>ELEVENTH GRADE</option>
+                            <option>TWELVE GRADE</option>
+                        </select>                         
+                    </div>
+            </div>
+            <!--SELECT SECCIÓN -->
+            <div class="col-md-2">
+                <label for="selectedSeccion" class="col-form-label">Sección:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-list-ol"
+                            [class.green-icon]="this.formasignaturas.get('selectedSeccion')?.valid"
+                            [class.red-icon]="this.formasignaturas.get('selectedSeccion')?.invalid && this.formasignaturas.get('selectedSeccion')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="selectedSeccion" [(ngModel)]="selectedSeccion" (ngModelChange)="actualizarIdAsignatura()" aria-label="Default select example">
+                                <option selected>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>E</option>
+                                <option>U</option>
+                            </select> 
+                    </div>
+            </div>
+            <!--SELECT JORNADA -->
+            <div class="col-md-2">
+                <label for="jornada" class="col-form-label">Jornada:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-stream"
+                            [class.green-icon]="this.formasignaturas.get('jornada')?.valid"
+                            [class.red-icon]="this.formasignaturas.get('jornada')?.invalid && this.formasignaturas.get('jornada')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="jornada" [(ngModel)]="jornada" aria-label="Default select example">
+                                <option selected>MATUTINA</option>
+                                <option>VESPERTINA</option>
+                                <option>ISEMED</option>
+                                <option>VIRTUAL</option>
+                            </select> 
+                    </div>
+            </div>
+            <!--SELECT SISTEMA -->
+            <div class="col-md-2">
+                <label for="sistema" class="col-form-label">Sistema:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="las la-globe-americas"
+                            [class.green-icon]="this.formasignaturas.get('sistema')?.valid"
+                            [class.red-icon]="this.formasignaturas.get('sistema')?.invalid && this.formasignaturas.get('sistema')?.touched"></i>
+                        </span>
+                            <select class="form-select" formControlName="sistema" [(ngModel)]="sistema" aria-label="Default select example">
+                                <option selected>INTERNACIONAL </option>
+                                <option>ANGLOSAJÓN</option>
+                            </select> 
+                    </div>
+            </div>
+    </div>
+    <!-- FILA ADICIONAL 1.2 -->
+    <div class="row adicional">
+        <!--SELECT SISTEMA -->
+        <div class="col-md-2">
+            <label for="modalidad" class="col-form-label">Modalidad:</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="las la-globe-americas"
+                        [class.green-icon]="this.formasignaturas.get('modalidad')?.valid"
+                        [class.red-icon]="this.formasignaturas.get('modalidad')?.invalid && this.formasignaturas.get('modalidad')?.touched"></i>
+                    </span>
+                        <select class="form-select modalidad" formControlName="modalidad" [(ngModel)]="modalidad" aria-label="Default select example">
+                            <option selected>EDUCACIÓN PRE-BÁSICA </option>
+                            <option>I CICLO DE EDUCACIÓN BÁSICA</option>
+                            <option>II CICLO DE EDUCACIÓN BÁSICA</option>
+                            <option>III CICLO DE EDUCACIÓN BÁSICA</option>
+                            <option>BACHILLERATO TÉCNICO PROFESIONAL</option>
+                            <option>BACHILLERATO TÉCNICO PROFESIONAL EN INFORMÁTICA</option>
+                            <option>BACHILLERATO PROFESIONAL EN CIENCIAS Y HUMANIDADES (BILINGÜE)</option>
+                        </select> 
+                </div>
+        </div>
+        <!--SELECT PERIODO -->
+        <div class="col-md-2">
+            <label for="periodo" class="col-form-label">Periodo:</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="las la-hourglass-start" 
+                        [class.green-icon]="this.formasignaturas.get('periodo')?.valid"
+                        [class.red-icon]="this.formasignaturas.get('periodo')?.invalid && this.formasignaturas.get('periodo')?.touched"></i>
+                    </span>
+                    <select class="form-select" formControlName="periodo" [(ngModel)]="periodo" aria-label="Default select example">
+                        <option selected>PARCIAL</option>
+                        <option>I_SEMESTRE</option>
+                        <option>II_SEMESTRE</option>
+                    </select>                                                                                                
+                </div>
+        </div>
+    </div>
+    <div class="row fila2">
+                    <!--SELECT ID ASIGNATURA -->
+                    <div class="col-md-2">
+                        <label for="idAsignatura" class="col-form-label">ID Asignatura:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="las la-key"
+                                    [class.green-icon]="this.formasignaturas.get('idAsignatura')?.valid"
+                                    [class.red-icon]="this.formasignaturas.get('idAsignatura')?.invalid && this.formasignaturas.get('idAsignatura')?.touched"></i>
+                                </span>
+                                    <input type="text" formControlName="idAsignatura" [(ngModel)]="idAsignatura" readonly class="form-control idasignatura" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm" [disabled]="!selectedYear || !selectedGrado || !selectedSeccion || !selectedAsignatura" value="{{ idAsignatura }}">
+                            </div>
+                    </div>
+                    <!--SELECT ASIGNATURA -->
+                    <div class="col-md-2 asignaturaselect">
+                        <label for="selectedAsignatura" class="col-form-label">Asignatura:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="las la-clipboard-list"
+                                    [class.green-icon]="this.formasignaturas.get('selectedAsignatura')?.valid"
+                                    [class.red-icon]="this.formasignaturas.get('selectedAsignatura')?.invalid && this.formasignaturas.get('selectedAsignatura')?.touched"></i>
+                                </span>
+                                <select class="form-select" formControlName="selectedAsignatura" [(ngModel)]="selectedAsignatura" (ngModelChange)="actualizarIdAsignatura()" aria-label="Default select example">
+                                    <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+                                  </select>
+                            </div>
+                    </div>
+    
+        <!--SELECT ASIGNATURA -->
+        <div class="col-md-2 buttons">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button [disabled]="formasignaturas.invalid" class="btn btn-primary btn-sm" type="button" (click)="agregarAsignatura()">
+                    <span>
+                        <i class="fa-regular fa-floppy-disk"></i>
+                    </span>
+                    &nbsp;Guardar
+                </button>
+
+                <button class="btn btn-primary btn-sm" type="button" (click)="limpiarbut()">
+                    <span>
+                        <i class="las la-broom" style="font-size: 18px;"></i>
+                    </span>
+                    &nbsp;Limpiar
+                </button>
+                <button class="btn btn-danger btn-sm" type="button" (click)="eliminarFilasSeleccionadas()" [disabled]="!hasSelectedRows">
+                    <span>
+                        <i class="las la-trash-alt" style="font-size: 18px;"></i>
+                    </span>
+                    &nbsp;Borrar
+                </button>
+            </div>  
+        </div>       
+    </div>
+</div>
+</form>
+<ag-grid-angular
+  style="width: 1235px; height: 400px;"
+  class="ag-theme-balham"
+  [gridOptions]="gridOptions"
+  (gridReady)="onGridReady($event)">
+</ag-grid-angular> 
+<!-- <ag-grid-angular
+  style="width: 1235px; height: 300px;"
+  class="ag-theme-balham"
+  [gridOptions]="gridOptions"
+  (gridReady)="onGridReady($event)">
+</ag-grid-angular>   -->

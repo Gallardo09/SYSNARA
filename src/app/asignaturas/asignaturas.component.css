@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.fw-bolder{
+    margin-top: 7px;
+    justify-content: center; /* Alineación horizontal */
+    text-align: center;
+    color: #0c5aa8;
+}
+
+.borderpanel{
+    padding: 5px 10px 10px 3%;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* border: solid 2px black; */
+    position: relative;
+}
+
+.borderpanel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96.5%;
+    height: 100%;
+    z-index: -1;
+    /* From https://css.glass COLOR DE DIV GLASS TRANSPARENTE*/
+    background: rgba(208, 209, 214, 0.205);
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(8.9px);
+    backdrop-filter: blur(8.9px);
+    border: 1px solid rgba(186, 187, 197, 0.507);
+  } 
+i{
+    padding-top: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    width: 25px; /*ancho de iconos */
+    font-size: 15px;
+}
+.col-md-2{
+    margin-right: 2%;    
+}
+.form-select{
+    font-size: 14px;
+}
+
+/* primer select año*/
+div.col-md-2:first-of-type{ 
+    width: 20vh;
+}
+/*Select seccion*/
+div.col-md-2:nth-of-type(4) { 
+    width: 15vh;
+}
+/*Select jornada*/
+div.col-md-2:nth-of-type(5) { 
+    width: 23vh;
+}
+/*Select sistema*/
+div.col-md-2:nth-of-type(6) { 
+    width: 28vh;
+} 
+/*Select Modalidad*/
+div .adicional .col-md-2:first-of-type { 
+    width: 100vh;
+}
+
+/*FILA 2*/
+/*Select ID asignatura*/
+div .fila2 .col-md-2:first-of-type{ 
+    width: 35vh;
+}
+/*Select asignatura*/
+div .fila2 .col-md-2:nth-of-type(2) { 
+    width: 100vh;
+}
+
+.fila2{
+    margin-top: 2px;
+}
+
+.idasignatura{
+    height: 22px; /*alto del idasignatura*/
+}
+
+/*VALIDACIONES***********************/
+.green-icon{
+    color: rgb(7, 209, 7)
+}
+
+.red-icon{
+    color: red;
+}
+
+/*DATA GRID*/
+.ag-theme-balham{
+    margin-left: 1.5%;
+    margin-top: 0.5%;
+}
+.header-center {
+    text-align: center;
+}
+
+/* BOTONES*/
+.btn-sm{
+    margin-top: -25px;
+    width: 170px; /* Reiniciar el ancho predeterminado de Bootstrap */
+    height: 60px;
+    max-width: 200px; /* Ajusta este valor según tus necesidades */
+}
+.asignaturaselect{
+    margin-right: 5%; /*Espacio entre los botones y el select de la asignatura*/
+} 
