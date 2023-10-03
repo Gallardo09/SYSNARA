@@ -43,7 +43,8 @@ form .emoji {
 
 .group {
   position: relative;
-  margin: 5px 0;
+  margin: 5px 0px 0px 2px;
+  padding: 0px 0px 0px 0px;
 }
 
 textarea {
@@ -126,6 +127,7 @@ label {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
 .btn:hover {
   color: #8b8b8b;
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18), 0 5px 5px rgba(0, 0, 0, 0.12);
@@ -155,16 +157,26 @@ label {
 }
 
 .btn-box {
-  text-align: center;
-  margin: 5px 0px 0px 0px; /* arriba, derecha, abajo, izquierda */
+  text-align: start;
+  margin: 5px 0px 0px 15px; /* arriba, derecha, abajo, izquierda */
 }
-
+.idencargado label {
+  color: rgb(59, 59, 59); /*Color del IDEncargado*/
+}
 /*------------------------------------------------------------------------------------------------*/
 .col-md-2{
   width: 150px; /*Ancho de los botones*/
 }
-.btnbuscar{
+.btnbuscar{ /*BOTON BUSCAR*/
   padding: 5.1px 10px;
-  margin: 0px 3px 2px 5px; /* arriba, derecha, abajo, izquierda MARGENES DE LOS BOTONES*/ 
-  position: absolute;
+  margin: 0px 3px 2px 210px; /* arriba, derecha, abajo, izquierda MARGENES DE LOS BOTONES*/ 
+}
+
+.col-md-4{ /*Margen izquierdo de la row four DIRECCION / OBSERVACION*/
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.container {
+  margin: 2px 15px 2px 15px;
 }
