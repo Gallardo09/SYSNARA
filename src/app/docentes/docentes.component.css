@@ -157,19 +157,19 @@ label {
 }
 
 .btn-box {
-  text-align: start;
+  text-align: end;
   margin: 5px 0px 0px 15px; /* arriba, derecha, abajo, izquierda */
 }
-.idencargado label {
+.btnbuscar{ /*BOTON BUSCAR*/
+  padding: 5.1px 10px;
+  margin: 0px 50px 2px 0px; /* arriba, derecha, abajo, izquierda MARGENES DE LOS BOTONES*/ 
+}
+.iddocente label {
   color: rgb(59, 59, 59); /*Color del IDEncargado*/
 }
 /*------------------------------------------------------------------------------------------------*/
 .col-md-2{
   width: 150px; /*Ancho de los botones*/
-}
-.btnbuscar{ /*BOTON BUSCAR*/
-  padding: 5.1px 10px;
-  margin: 0px 3px 2px 210px; /* arriba, derecha, abajo, izquierda MARGENES DE LOS BOTONES*/ 
 }
 
 .col-md-4{ /*Margen izquierdo de la row four DIRECCION / OBSERVACION*/
@@ -180,3 +180,56 @@ label {
 .container {
   margin: 2px 15px 2px 15px;
 }
+
+/****************************** TABLA DE DATOS *************************************/
+.tabletitle{
+  text-align: center;
+  font-size: 15px;
+  color: #0c5aa8;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold; 
+}
+.headcolum{
+  font-size: 14px;
+  background-color: #0c5aa8;
+  color: white;
+}
+.table-wrapper /*BARRA DE DESPLAZAMIENTO*/
+{
+  max-height: 420px; /* Establece la altura máxima deseada */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando se supera la altura máxima */
+}
+.table{
+  text-align: center;
+  border: 1px solid #0c5aa8;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+}
+
+.table-rounded {
+  border-radius: 5px;
+  overflow: hidden;
+}
+.table tbody tr td i{
+  font-size: 20px; /*Tamaño del icono borrar*/
+}
+.la-edit{
+  color: #00ad00;
+}
+.la-trash-alt{
+  color: red;
+}
+.las{
+  cursor: pointer;
+}
+
+/*INPUT NUMERICOS - (Quitar menu desplazamiento)*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

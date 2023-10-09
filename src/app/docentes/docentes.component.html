@@ -1,5 +1,5 @@
 <h3 class="fw-bolder">REGISTRAR DOCENTES</h3>
-<form class="container text-center" (ngSubmit)="RegistrarDocentes()">
+<form [formGroup]="formDocentes" class="container text-center" (ngSubmit)="GuardarDocente()">
   <!--FILA 1  -->
     <div class="row first">
             <!-- BUTTON BUSCAR -->
@@ -8,44 +8,48 @@
             </div>
     </div>
   <!-- FILA 2 -->
-      <div class="row second">
+  <div class="row second">
+          <!--DIV AÑO-->
+          <div class="group col">
+            <select formControlName="year" [(ngModel)]="year" required>
+                <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
+                <option>2031</option>
+                <option>2032</option>
+                <option>2033</option>
+          </select><span class="highlight"></span><span class="bar"></span>
+            <label>Año</label>
+          </div>      
             <!--DIV IDENTIDAD-->
             <div class="group col">
-              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <input type="text" formControlName="Identidad" [(ngModel)]="Identidad" (keypress)="onKeyPress($event)" required maxlength="15" pattern="[0-9]+"/><span class="highlight"></span><span class="bar"></span>
               <label>Identidad</label>
             </div>
             <!--DIV NOMBRE DEL ENCARGADO-->
             <div class="group col">
-              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
-              <label>Nombre del Encargado</label>
+              <input type="text" formControlName="NombreDelDocente" [(ngModel)]="NombreDelDocente" required />
+              <span class="highlight"></span><span class="bar"></span>
+              <label>Nombre del Docente</label>
             </div>
             <!--DIV ID ENCARGADO-->
-            <div class="group col idencargado" >
-              <input type="text" [disabled]="true" required="required"/><span class="highlight"></span><span class="bar"></span>
-              <label>ID Encargado (automático)</label>
-            </div>
-            <!--DIV PARENTESCO-->
-            <div class="group col">
-              <select required="required">
-                  <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
-                  <option>PADRE</option>
-                  <option>MADRE</option>
-                  <option>HERMANO(A)</option>
-                  <option>ABUELO(A)</option>
-                  <option>TIO(A)</option>
-                  <option>PRIMO(A)</option>
-                  <option>ENCARGADO(A)</option>
-            </select><span class="highlight"></span><span class="bar"></span>
-              <label>Parentesco</label>
+            <div class="group col iddocente" >
+              <input type="text" formControlName="ID" [(ngModel)]="totalfilas" required/><span class="highlight"></span><span class="bar"></span>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID Docente</label>
             </div>
             <!--DIV PROFESIÓN-->
             <div class="group col">
-              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <input type="text" formControlName="Profesion" [(ngModel)]="Profesion" required/><span class="highlight"></span><span class="bar"></span>
               <label>Profesión</label>
             </div>
             <!--DIV GENERO-->
             <div class="group col">
-              <select required="required">
+              <select formControlName="Genero" [(ngModel)]="Genero" required>
                   <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
                   <option>FEMENINO</option>
                   <option>MASCULINO</option>
@@ -57,17 +61,20 @@
       <div class="row three">
             <!--DIV CELULAR-->
             <div class="group col">
-              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <input type="text" formControlName="Celular" [(ngModel)]="Celular" (keypress)="onKeyPress($event)" required maxlength="12" />
+              <span class="highlight"></span>
+              <span class="bar"></span>
               <label>Celular</label>
-            </div>
+            </div>                      
             <!--DIV CELULAR-->
             <div class="group col">
-              <input type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <input type="text" formControlName="Telefono" [(ngModel)]="Telefono" (keypress)="onKeyPress($event)" required maxlength="12"/>
+              <span class="highlight"></span><span class="bar"></span>
               <label>Teléfono</label>
             </div>
             <!--DIV CORREO-->
             <div class="group col">
-              <input type="email" required="required"/><span class="highlight"></span><span class="bar"></span>
+              <input type="email" formControlName="Correo" [(ngModel)]="Correo" required/><span class="highlight"></span><span class="bar"></span>
               <label>Correo</label>
             </div>
       </div>
@@ -76,28 +83,18 @@
         <!-- DIV DIRECCIÓN -->
         <div class="col-md-4 mb-2">
             <div class="group">
-                <input type="text" required="required" />
+                <input type="text" formControlName="Direccion" [(ngModel)]="Direccion" required />
                 <span class="highlight"></span><span class="bar"></span>
                 <label>Dirección</label>
-            </div>
-        </div>
-
-        <!-- DIV OBSERVACIÓN -->
-        <div class="col-md-4 mb-2">
-            <div class="group">
-                <input type="text" required="required" />
-                <span class="highlight"></span><span class="bar"></span>
-                <label>Observación</label>
             </div>
         </div>
       </div>
   <!-- FILA 5 -->
       <div class="row five">
               <div class="btn-box row justify-content-center">
-                  <button class="btn btn-submit col-md-2" type="submit">Guardar</button>
+                  <button class="btn btn-submit col-md-2" type="button" (click)="GuardarDocente()">Guardar</button>
                   <button class="btn btn-cancel col-md-2" type="button">Editar</button>
-                  <button class="btn btn-cancel col-md-2" type="button">Limpiar</button>
-                  <button class="btn btn-cancel col-md-2" type="button">Borrar</button>
+                  <button class="btn btn-cancel col-md-2" type="button" (click)="LimpiarFormDocente()">Limpiar</button>
                   <button class="btn btn-cancel col-md-2" type="button">Cancelar</button>
               </div>
         </div>
@@ -111,33 +108,31 @@
           <thead class="headcolum">
               <tr> 
                 <!-- Encabezados de Columnas -->
+                  <th scope="col">Año</th>
                   <th scope="col">Identidad</th>
-                  <th scope="col">Nombre del Encargado(a)</th>
+                  <th scope="col">Nombre del Docente</th>
                   <th scope="col">ID</th>
-                  <th scope="col">Parentesco</th>
                   <th scope="col">Profesión</th>
                   <th scope="col">Género</th>
                   <th scope="col">Celular</th>
                   <th scope="col">Teléfono</th>
                   <th scope="col">Correo</th>
                   <th scope="col">Dirección</th>
-                  <th scope="col">Observación</th>
+                  <th scope="col">Eliminar</th>
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let encargado of listaEncargado">
-                  <td>{{encargado.Identidad}}</td>
-                  <td>{{encargado.NombreDelEncargado}}</td>
-                  <td>{{encargado.ID}}</td>
-                  <td>{{encargado.Parentesco}}</td>
-                  <td>{{encargado.Profesion}}</td>
-                  <td>{{encargado.Genero}}</td>
-                  <td>{{encargado.Celular}}</td>
-                  <td>{{encargado.Telefono}}</td>
-                  <td>{{encargado.Correo}}</td>
-                  <td>{{encargado.Direccion}}</td>
-                  <td>{{encargado.Observacion}}</td>
-                  <td><i class="las la-edit"></i></td>
+              <tr *ngFor="let registrodocentes of listaDocente">
+                  <td>{{registrodocentes.year}}</td>
+                  <td>{{registrodocentes.Identidad}}</td>
+                  <td>{{registrodocentes.NombreDelDocente}}</td>
+                  <td>{{registrodocentes.ID}}</td>
+                  <td>{{registrodocentes.Profesion}}</td>
+                  <td>{{registrodocentes.Genero}}</td>
+                  <td>{{registrodocentes.Celular}}</td>
+                  <td>{{registrodocentes.Telefono}}</td>
+                  <td>{{registrodocentes.Correo}}</td>
+                  <td>{{registrodocentes.Direccion}}</td>
                   <td><i class="las la-trash-alt"></i></td>
               </tr>
           </tbody>
