@@ -183,7 +183,8 @@ label {
 
 /****************************** TABLA DE DATOS *************************************/
 .tabletitle{
-  text-align: center;
+  text-align: center; /*Alinear texto al centro*/
+  vertical-align: middle; /*Alinear texto al medio*/
   font-size: 15px;
   color: #0c5aa8;
   margin-top: 10px;
@@ -193,6 +194,7 @@ label {
 }
 .headcolum{
   font-size: 14px;
+  vertical-align: middle; /*Alinear texto al medio*/
   background-color: #0c5aa8;
   color: white;
 }
@@ -225,11 +227,28 @@ label {
 .las{
   cursor: pointer;
 }
-
-/*INPUT NUMERICOS - (Quitar menu desplazamiento)*/
+/*-----------------------------------------------------------------------*/
+/*INPUT NUMERICOS - (Quitar menu/opciones desplazamiento)*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
+/*UBICAR EL LABEL EN LA PARTE SUPERIOR DEL INPUT DE MANERA ESTATICA DEL ID DOCENTE*/
+.fixed-label label {
+  top: -8px; /* Espacio entre el texto dentro del input y el label */
+  font-size: 12px;
+  color: #2196F3;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  transition: 300ms ease all;
+}
+
+.fixed-label input:focus ~ label,
+.fixed-label input:valid ~ label {
+  top: -15px; /* Ajusta la posición del label cuando el input está enfocado o tiene contenido */
+  font-size: 12px;
+  color: #2196F3;
+}

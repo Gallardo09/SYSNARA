@@ -75,7 +75,6 @@ constructor(private fb: FormBuilder, private toastr: ToastrService) {
   // Si el formulario no es válido, mostrar mensajes de error para campos vacíos
     else { 
       const controlNames = Object.keys(this.formDocentes.controls);
-
       for (const controlName of controlNames) {
         const control = this.formDocentes.get(controlName);
         if (control && control.invalid) {

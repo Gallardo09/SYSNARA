@@ -180,3 +180,69 @@ label {
 .container {
   margin: 2px 15px 2px 15px;
 }
+
+/****************************** TABLA DE DATOS *************************************/
+.tabletitle{
+  text-align: center; /*Alinear texto al centro*/
+  vertical-align: middle; /*Alinear texto al medio*/
+  font-size: 15px;
+  color: #0c5aa8;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold; 
+}
+.headcolum{
+  font-size: 14px;
+  vertical-align: middle;
+  background-color: #0c5aa8;
+  color: white;
+}
+.table-wrapper /*BARRA DE DESPLAZAMIENTO*/
+{
+  max-height: 420px; /* Establece la altura máxima deseada */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando se supera la altura máxima */
+}
+.table{ 
+  text-align: center; /*Alinear texto al centro*/
+  vertical-align: middle; /*Alinear texto al medio*/
+  border: 1px solid #0c5aa8;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+}
+
+.table-rounded {
+  border-radius: 5px;
+  overflow: hidden;
+}
+.table tbody tr td i{
+  font-size: 20px; /*Tamaño del icono borrar*/
+}
+.la-edit{
+  color: #00ad00;
+}
+.la-trash-alt{
+  color: red;
+}
+.las{
+  cursor: pointer;
+}
+/*-----------------------------------------------------------------------*/
+/*UBICAR EL LABEL EN LA PARTE SUPERIOR DEL INPUT DE MANERA ESTATICA DEL ID ENCARGADO*/
+.fixed-label label {
+  top: -8px; /* Espacio entre el texto dentro del input y el label */
+  font-size: 12px;
+  color: #2196F3;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  transition: 300ms ease all;
+}
+
+.fixed-label input:focus ~ label,
+.fixed-label input:valid ~ label {
+  top: -15px; /* Ajusta la posición del label cuando el input está enfocado o tiene contenido */
+  font-size: 12px;
+  color: #2196F3;
+}
+/*-----------------------------------------------------------------------*/
