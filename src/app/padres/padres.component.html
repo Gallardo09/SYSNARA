@@ -4,7 +4,7 @@
     <div class="row first">
             <!-- BUTTON BUSCAR -->
             <div class="btn-box">
-              <button class="btn btn-submit btnbuscar" type="submit">Buscar</button>
+              <button class="btn btn-submit btnbuscar" type="button" (click)="BuscarEncargado()">Buscar</button>
             </div>
     </div>
   <!-- FILA 2 -->
@@ -16,7 +16,7 @@
             </div>
             <!--DIV NOMBRE DEL ENCARGADO-->
             <div class="group col">
-              <input type="text" formControlName="NombreDelEncargado" [(ngModel)] = "NombreDelEncargado" required/><span class="highlight"></span><span class="bar"></span>
+              <input type="text" formControlName="NombreDelEncargado" [(ngModel)]="NombreDelEncargado" required/><span class="highlight"></span><span class="bar"></span>
               <label>Nombre del Encargado</label>
             </div>
             <!--DIV ID ENCARGADO-->

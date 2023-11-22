@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./padres.component.css']
 })
 export class PadresComponent {
-  
+
 /*Declaración de Propiedades*/
   Identidad?: string;
   NombreDelEncargado?: string;
@@ -28,6 +28,11 @@ export class PadresComponent {
 
   listaEncargado: any[] = [ /*Listas en la table*/
   {Identidad: '0502199400523', NombreDelEncargado: 'JUAN ANGEL PEREZ GOMEZ', IDEncargado: '1', Parentesco: 'PADRE', Profesion: 'OPERARIO', Genero: 'MASCULINO', Celular: '97824537', Telefono: '25253636', Correo: 'juanpererz@gmail.com', Direccion: 'CHOLOMA, CORTÉS', Observacion: 'NINGUNA'},
+  {Identidad: '0502200300123', NombreDelEncargado: 'LUIS PEDRO ALVARADO CRUZ', IDEncargado: '2', Parentesco: 'PADRE', Profesion: 'SOLDADOR', Genero: 'MASCULINO', Celular: '99884455', Telefono: '25253636', Correo: 'luisalvarado@gmail.com', Direccion: 'LA SAN CARLOS, CORTÉS', Observacion: 'NINGUNA'},
+  {Identidad: '0502199400523', NombreDelEncargado: 'JUAN ANGEL PEREZ GOMEZ', IDEncargado: '3', Parentesco: 'HERMANO(A)', Profesion: 'OPERARIO', Genero: 'MASCULINO', Celular: '97824537', Telefono: '25253636', Correo: 'juanpererz@gmail.com', Direccion: 'CHOLOMA, CORTÉS', Observacion: 'NINGUNA'},
+  {Identidad: '0502200695236', NombreDelEncargado: 'KARLA MELISSA RODAS LOPEZ', IDEncargado: '4', Parentesco: 'MADRE', Profesion: 'AMA DE CASA', Genero: 'FEMENINO', Celular: '98989999', Telefono: '26606000', Correo: 'melissa@gmail.com', Direccion: 'CHOLOMA, CORTÉS', Observacion: 'NINGUNA'},
+  {Identidad: '0502201036365', NombreDelEncargado: 'JOSE MARVIN TORRES HERNANDEZ', IDEncargado: '5', Parentesco: 'PRIMO(A)', Profesion: 'TÉCNICO', Genero: 'MASCULINO', Celular: '99885566', Telefono: '25555522', Correo: 'marvintorres@gmail.com', Direccion: 'SAN PEDRO SULA, CORTÉS', Observacion: 'NINGUNA'},
+
 ];
 
 ngOnInit(): void { //ngOnInit() se ejecuta antes de que las vistas del componente hayan sido inicializadas
@@ -56,8 +61,18 @@ constructor(private fb: FormBuilder, private toastr: ToastrService) {
 }
   /*----------------------------------- GUARDAR -----------------------------------*/
   RegistrarEncargados(): void {
+    //Obtengo el ID Encargado para verificar la existencia
+    const IDEncargadoGuardar = this.IDEncargado;
+  
+    //Busca el encargado en la lista por su IDEncargado 
+    const encargadoExistenteGuardar = this.listaEncargado.find(encargado => encargado.IDEncargado === IDEncargadoGuardar); 
+    if(encargadoExistenteGuardar)
+    {
+      // El encargado no existe en la lista, muestra un mensaje de error o realiza la lógica necesaria
+      this.toastr.error('El encargado con ID ' + IDEncargadoGuardar + ' ya existe en la lista.', 'Advertencia', { timeOut: 2000 });
+    } else {
       console.log(this.formEncargado);
-      if (this.formEncargado.valid) { 
+      if (this.formEncargado.valid) {
         const listaEncargado: any = {
           Identidad: this.formEncargado.get('Identidad')?.value,
           NombreDelEncargado: this.formEncargado.get('NombreDelEncargado')?.value,
@@ -71,10 +86,9 @@ constructor(private fb: FormBuilder, private toastr: ToastrService) {
           Direccion: this.formEncargado.get('Direccion')?.value,
           Observacion: this.formEncargado.get('Observacion')?.value,
     }
-
     // Agrega los datos a la lista
     this.listaEncargado.unshift(listaEncargado);
-  
+
     // Limpia el formulario
     this.formEncargado.reset();
 
@@ -87,9 +101,8 @@ constructor(private fb: FormBuilder, private toastr: ToastrService) {
     setTimeout(() => {
       this.contarFilasTabla();
     }, 0);
-  }
-  // Si el formulario no es válido, mostrar mensajes de error para campos vacíos
-    else { 
+    }  // Si el formulario no es válido, mostrar mensajes de error para campos vacíos
+    else {
       const controlNames = Object.keys(this.formEncargado.controls);
       for (const controlName of controlNames) {
         const control = this.formEncargado.get(controlName);
@@ -97,15 +110,29 @@ constructor(private fb: FormBuilder, private toastr: ToastrService) {
           this.toastr.error(`El campo ${controlName} es obligatorio.`, 'Error', { timeOut: 2000 });
         }
       }
-    }   
+    }
+  }
+
 }
   /*----------------------------------- LIMPIAR -----------------------------------*/
   LimpiarFormEncargado(): void{
     this.formEncargado.reset();
-    // this.formEncargado.get('IDEncargado').disable(); // Asegurarse de que el IDEncargado quede deshabilitado
-    this.toastr.success('Formulario!', 'Limpio', { timeOut: 2000 }); 
+      // Restablece la lista 'listaEncargado' a su valor original
+  this.listaEncargado = [
+    { Identidad: '0502199400523', NombreDelEncargado: 'JUAN ANGEL PEREZ GOMEZ', IDEncargado: '1', Parentesco: 'PADRE', Profesion: 'OPERARIO', Genero: 'MASCULINO', Celular: '97824537', Telefono: '25253636', Correo: 'juanpererz@gmail.com', Direccion: 'CHOLOMA, CORTÉS', Observacion: 'NINGUNA' },
+    { Identidad: '0502200300123', NombreDelEncargado: 'LUIS PEDRO ALVARADO CRUZ', IDEncargado: '2', Parentesco: 'PADRE', Profesion: 'SOLDADOR', Genero: 'MASCULINO', Celular: '99884455', Telefono: '25253636', Correo: 'luisalvarado@gmail.com', Direccion: 'LA SAN CARLOS, CORTÉS', Observacion: 'NINGUNA' },
+    { Identidad: '0502199400523', NombreDelEncargado: 'JUAN ANGEL PEREZ GOMEZ', IDEncargado: '3', Parentesco: 'HERMANO(A)', Profesion: 'OPERARIO', Genero: 'MASCULINO', Celular: '97824537', Telefono: '25253636', Correo: 'juanpererz@gmail.com', Direccion: 'CHOLOMA, CORTÉS', Observacion: 'NINGUNA' },
+    { Identidad: '0502200695236', NombreDelEncargado: 'KARLA MELISSA RODAS LOPEZ', IDEncargado: '4', Parentesco: 'MADRE', Profesion: 'AMA DE CASA', Genero: 'FEMENINO', Celular: '98989999', Telefono: '26606000', Correo: 'melissa@gmail.com', Direccion: 'CHOLOMA, CORTÉS', Observacion: 'NINGUNA' },
+    { Identidad: '0502201036365', NombreDelEncargado: 'JOSE MARVIN TORRES HERNANDEZ', IDEncargado: '5', Parentesco: 'PRIMO(A)', Profesion: 'TÉCNICO', Genero: 'MASCULINO', Celular: '99885566', Telefono: '25555522', Correo: 'marvintorres@gmail.com', Direccion: 'SAN PEDRO SULA, CORTÉS', Observacion: 'NINGUNA' },
+  ];
+    // Actualiza el contador de filas después de eliminar
+    setTimeout(() => {
+      this.contarFilasTabla();
+    }, 0);
+  // this.formEncargado.get('IDEncargado').disable(); // Asegurarse de que el IDEncargado quede deshabilitado
+    this.toastr.success('Formulario!', 'Limpio', { timeOut: 2000 });
   }
-  
+
 
   /*-------------------------FUNCIÓN PARA SOLO PERMITIR NUMEROS/*-------------------------*/
   onKeyPress(event: KeyboardEvent) {
@@ -118,44 +145,38 @@ constructor(private fb: FormBuilder, private toastr: ToastrService) {
     }
   }
   /*--------------------------------------- EDITAR (BOTÓN)  -----------------------------------------------*/
-  /*--------------------------------------- EDITAR (BOTÓN) -----------------------------------------------*/
 // Función para editar encargados
 EditarEncargados() {
-//   if (this.formEncargado.valid) {
-//     const idEncargado = this.formEncargado.get('IDEncargado').value;
+  // Obtén el IDEncargado que deseas verificar
+  const idEncargadoAEditar = this.IDEncargado;
+  // Obtén la Identidad que deseas verificar
+  // const IdentidadEditar = this.Identidad;
+  // Busca el encargado en la lista por su IDEncargado y su Identidad
+  const encargadoExistente = this.listaEncargado.find(encargado => encargado.IDEncargado === idEncargadoAEditar);
 
-//     // Encuentra el encargado en listaEncargado que coincide con el IDEncargado
-//     const encargadoIndex = this.listaEncargado.findIndex(encargado => encargado.IDEncargado === idEncargado);
-
-//     if (encargadoIndex !== -1) {
-//       // Actualiza los datos del encargado en listaEncargado con los datos del formulario
-//       this.listaEncargado[encargadoIndex] = {
-//         Identidad: this.formEncargado.get('Identidad').value,
-//         NombreDelEncargado: this.formEncargado.get('NombreDelEncargado').value,
-//         IDEncargado: idEncargado,
-//         Parentesco: this.formEncargado.get('Parentesco').value,
-//         Profesion: this.formEncargado.get('Profesion').value,
-//         Genero: this.formEncargado.get('Genero').value,
-//         Celular: this.formEncargado.get('Celular').value,
-//         Telefono: this.formEncargado.get('Telefono').value,
-//         Correo: this.formEncargado.get('Correo').value,
-//         Direccion: this.formEncargado.get('Direccion').value,
-//         Observacion: this.formEncargado.get('Observacion').value,
-//       };
-
-//       // Realiza cualquier otra lógica necesaria, como guardar los datos actualizados en el servidor.
-
-//       // Limpia el formulario después de editar
-//       this.LimpiarFormEncargado();
-//     } else {
-//       // Si no se encuentra un encargado con el IDEncargado, muestra un mensaje de error o realiza alguna acción adecuada.
-//       this.toastr.error('No se encontró un encargado con el IDEncargado especificado.', 'Error', { timeOut: 2000 });
-//     }
-//   } else {
-//     // Si el formulario no es válido, muestra mensajes de error para campos vacíos
-//     this.toastr.error('Por favor, complete todos los campos obligatorios.', 'Error', { timeOut: 2000 });
-//   }
+  if (encargadoExistente) {
+    // Actualiza los valores del encargado con los valores de los campos de entrada
+    encargadoExistente.Identidad = this.Identidad;
+    encargadoExistente.NombreDelEncargado = this.NombreDelEncargado;
+    encargadoExistente.Parentesco = this.Parentesco;
+    encargadoExistente.Profesion = this.Profesion;
+    encargadoExistente.Genero = this.Genero;
+    encargadoExistente.Celular = this.Celular;
+    encargadoExistente.Telefono = this.Telefono;
+    encargadoExistente.Correo = this.Correo;
+    encargadoExistente.Direccion = this.Direccion;
+    encargadoExistente.Observacion = this.Observacion;
+    console.log('El encargado con ID ' + idEncargadoAEditar + ' ya esta registrado en la lista.');
+    this.toastr.success('Datos editados correctamente.', 'Aviso', { timeOut: 2000 });
+  } else {
+    // El encargado no existe en la lista, muestra un mensaje de error o realiza la lógica necesaria
+    console.log('El encargado con ID ' + idEncargadoAEditar + ' no existe en la lista.');
+    // El encargado no existe en la lista, muestra un mensaje de error o realiza la lógica necesaria
+    this.toastr.error('Primero seleccione en la tabla el elemento a editar.', 'Advertencia', { timeOut: 2000 });
+    
+  }
 }
+
 /*--------------------------------------- EDITAR (TABLA) -----------------------------------------------*/
 editarEncargado(i: number) {
   // Obtener el encargado seleccionado usando el índice
@@ -193,7 +214,7 @@ eliminarEncargado(index: number) {
   /*------------------------------- CONTADOR DE FILAS DE LA TABLA ---------------------------------------*/
 
   ngAfterViewInit(): void {
-    /*Utilice ngAfterViewInit para obtener una referencia a la tabla HTML y contar las filas en ella después de que la vista se ha renderizado. 
+    /*Utilice ngAfterViewInit para obtener una referencia a la tabla HTML y contar las filas en ella después de que la vista se ha renderizado.
     Esto garantiza que la tabla esté disponible en el DOM antes de que intentes acceder a ella.*/
     this.contarFilasTabla();
   }
@@ -212,4 +233,16 @@ eliminarEncargado(index: number) {
     this.contadorEncargados = this.listaEncargado.length;
   }
   }
+
+  /*------------------------------- BUSCAR ENCARGADO ---------------------------------------*/
+  BuscarEncargado() {
+    // Obtén el valor de identidad del formulario
+    const identidadABuscar = this.Identidad;
+  
+    // Filtra la lista de encargados y almacena los coincidentes en una nueva lista
+    const encargadosFiltrados = this.listaEncargado.filter(encargado => encargado.Identidad === identidadABuscar);
+  
+    // Actualiza this.listaEncargado con los datos coincidentes
+    this.listaEncargado = encargadosFiltrados;
+  }  
 }

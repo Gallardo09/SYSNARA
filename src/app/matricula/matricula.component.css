@@ -1,0 +1,388 @@
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #424242;
+}
+
+/* form {
+  width: 320px;
+  margin: 45px auto;
+} */
+h3{
+  font-size: 1.5em;
+  font-weight: 300;
+  text-align: center;
+  color: #2196F3;
+}
+/* form h1 {
+  font-size: 3em;
+  font-weight: 300;
+  text-align: center;
+  color: #2196F3;
+} */
+form h5 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #080808;
+}
+form hr.sep {
+  background: #2196F3;
+  box-shadow: none;
+  border: none;
+  height: 2px;
+  width: 25%;
+  margin: 0px auto 45px auto;
+}
+form .emoji {
+  font-size: 1.2em;
+}
+
+.group {
+  position: relative;
+  margin: 5px 0px 0px 2px;
+  padding: 0px 0px 0px 0px;
+}
+
+textarea {
+  resize: none;
+}
+
+input, select,
+textarea {
+  background: none;
+  color: #4d4b4b; /*Color dentro del texto dentro de los input*/
+  font-size: 15px;
+  padding: 10px 10px 2px 5px; /* arriba, derecha, abajo, izquierda */
+  display: block;
+  width: 320px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #c6c6c6;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+input:focus ~ label, input:valid ~ label,
+select:focus ~ label, select:valid ~ label,
+textarea:focus ~ label,
+textarea:valid ~ label {
+  top: -8px; /*Especio entre el texto dentro del input y el label*/
+  font-size: 12px;
+  color: #2196F3;
+}
+input:focus ~ .bar:before,
+select:focus ~ .bar:before,
+textarea:focus ~ .bar:before {
+  width: 320px;
+}
+
+input[type=password] {
+  letter-spacing: 0.3em;
+}
+
+label {
+  color: #1168af; /*COLOR DEL TEXTO DE LAS LETRAS*/
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 320px;
+}
+.bar:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #2196F3;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+.btn {
+  background: #fff;
+  color: #959595;
+  border: none;
+  padding: 7px 10px;
+  margin: 5px 3px 2px 3px; /* arriba, derecha, abajo, izquierda MARGENES DE LOS BOTONES*/ 
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn:hover {
+  color: #8b8b8b;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18), 0 5px 5px rgba(0, 0, 0, 0.12);
+}
+.btn.btn-link {
+  background: #2196F3;
+  color: #d3eafd;
+}
+.btn.btn-link:hover {
+  background: #0d8aee;
+  color: #deeffd;
+}
+.btn.btn-submit {
+  background: #2196F3;
+  color: #bce0fb;
+}
+.btn.btn-submit:hover {
+  background: #0d8aee;
+  color: #deeffd;
+}
+.btn.btn-cancel {
+  background: #eee;
+}
+.btn.btn-cancel:hover {
+  background: #e1e1e1;
+  color: #8b8b8b;
+}
+
+.idencargado label {
+  color: rgb(59, 59, 59); /*Color del IDEncargado*/
+}
+/*------------------------------------------------------------------------------------------------*/
+.col-md-2{
+  width: 150px; /*Ancho de los botones*/
+}
+/* .btnbuscar{ /*BOTON BUSCAR
+  padding: 5.1px 10px;
+  margin: 0px 3px 2px 210px;  arriba, derecha, abajo, izquierda MARGENES DE LOS BOTONES
+} */
+
+.col-md-4{ /*Margen izquierdo de la row four DIRECCION / OBSERVACION*/
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.container {
+  margin: 2px 15px 2px 15px;
+}
+
+/****************************** TABLA DE DATOS *************************************/
+.tabletitle{
+  text-align: center; /*Alinear texto al centro*/
+  vertical-align: middle; /*Alinear texto al medio*/
+  font-size: 12px;
+  color: #0c5aa8;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-weight: bold; 
+}
+.headcolum{
+  font-size: 14px;
+  vertical-align: middle;
+  background-color: #0c5aa8;
+  color: white;
+}
+.table-wrapper /*BARRA DE DESPLAZAMIENTO*/
+{
+  max-height: 420px; /* Establece la altura máxima deseada */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando se supera la altura máxima */
+}
+.table{ 
+  text-align: center; /*Alinear texto al centro*/
+  vertical-align: middle; /*Alinear texto al medio*/
+  border: 1px solid #0c5aa8;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+}
+
+.table-rounded {
+  border-radius: 5px;
+  overflow: hidden;
+}
+.table tbody tr td i{
+  font-size: 20px; /*Tamaño del icono borrar*/
+}
+.la-edit{
+  color: #00ad00;
+}
+.la-trash-alt{
+  color: red;
+}
+.las{
+  cursor: pointer;
+}
+.dbpanel{
+  margin-top: -40px;
+}
+/*-----------------------------------------------------------------------*/
+/*UBICAR EL LABEL EN LA PARTE SUPERIOR DEL INPUT DE MANERA ESTATICA DEL ID ENCARGADO*/
+.fixed-label label {
+  top: -8px; /* Espacio entre el texto dentro del input y el label */
+  font-size: 12px;
+  color: #2196F3;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  transition: 300ms ease all;
+}
+
+.fixed-label input:focus ~ label,
+.fixed-label input:valid ~ label {
+  top: -15px; /* Ajusta la posición del label cuando el input está enfocado o tiene contenido */
+  font-size: 12px;
+  color: #2196F3;
+}
+.btnmarginEncargado{
+  margin-left: 30%;
+}
+#btnBuscar{ /*BOTON BUSCAR ALUMNO*/
+  display: flex;
+  justify-content: center; /* Alineación horizontal al centro */
+  align-items: center; /* Alineación vertical al centro */
+}
+/*-----------------------------------------------------------------------*/
+/*----------------------------------- GRID DE 2 COLUMNAS ------------------------------------*/
+.container2 {  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1.7fr 0.3fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "FormPadre FormDatosPersonalesMatricula FormDatosAcademicosMatricula DatosMatricula"
+    "Botones Botones Botones Botones";
+}
+
+.FormPadre { grid-area: FormPadre; }
+
+.FormDatosPersonalesMatricula { 
+  margin-left: 20px;
+  margin-right: 20px;
+  grid-area: FormDatosPersonalesMatricula; 
+}
+
+.FormDatosAcademicosMatricula { 
+  margin-right: 20px;
+  grid-area: FormDatosAcademicosMatricula; 
+}
+
+.DatosMatricula {  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "EstudiantesMatriculados EstudiantesMatriculados"
+    "NiñasMatriculadas NiñasMatriculadas"
+    "VaronesMatriculados VaronesMatriculados"
+    "PrimerIngreso PrimerIngreso"
+    "Reingreso Reingreso";
+  grid-area: DatosMatricula;
+}
+
+.EstudiantesMatriculados { 
+  display: block; 
+  justify-content: center;
+  position: relative;
+  grid-area: EstudiantesMatriculados; }
+
+.NiñasMatriculadas { 
+  
+  grid-area: NiñasMatriculadas; }
+
+.VaronesMatriculados { 
+  
+  grid-area: VaronesMatriculados; }
+
+.PrimerIngreso { 
+  
+  grid-area: PrimerIngreso; }
+
+.Reingreso { 
+  
+  grid-area: Reingreso; }
+
+.Botones {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+    ".";
+  grid-area: Botones;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.titulodatoscademicos
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: auto; /* Esto asegura que la altura sea del 100% de la ventana */
+  font-weight: bold; 
+  margin-top: 10px;
+  margin-bottom: 21px;
+}
+.datospersonales{
+  text-align: center;
+}
+
+.titulo{ /*Titulo de la Estadistica*/
+  font-size: 20px;
+  padding-bottom: 20px;
+  padding-top: 15px;
+  font-weight: bold;
+}
+.subtitulo{
+  font-size: 12px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.DatosMatricula {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: auto; /* Esto asegura que la altura sea del 100% de la ventana */
+}
+
+.estadisMargen {
+  margin-bottom: 20px; /* Puedes ajustar esto según sea necesario */
+}
+
+.RegistroContador {
+  margin-top: 0px;
+  padding-top: 0px;
+  text-align: center; /*Alinear texto al centro*/
+  color: #fff;
+  font-weight: bold;
+  font-size: 25px;
+}
+/*ICONO*/
+.fa-chart-pie{
+  font-size: 90px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
