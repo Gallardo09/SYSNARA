@@ -13,33 +13,33 @@
                   <label>Identidad</label>
                 </div>
                 <!--DIV NOMBRE DEL ENCARGADO-->
-                <div class="group col">
+                <div class="group col fixed-label">
                   <input type="text" formControlName="NombreDelEncargado" [(ngModel)]="NombreDelEncargado" required/><span class="highlight"></span><span class="bar"></span>
                   <label>Nombre del Encargado</label>
                 </div>
                 <!--DIV ID ENCARGADO-->
-                <div class="group col" >
+                <div class="group col fixed-label" >
                   <input type="text" formControlName="IDEncargado" [(ngModel)]="IDEncargado" [disabled]="true" required/><span class="highlight"></span><span class="bar"></span>
-                  <label>ID IMV Encargado (automático)</label>
+                  <label>ID IMV Encargado</label>
                 </div>
                 <!--DIV PARENTESCO-->
-                <div class="group col">
+                <div class="group col fixed-label">
                   <input type="text" formControlName="Parentesco" [(ngModel)]="Parentesco" [disabled]="true" required/><span class="highlight"></span><span class="bar"></span>
                   <span class="highlight"></span><span class="bar"></span>
                   <label>Parentesco</label>
                 </div>
                 <!--DIV CELULAR-->
-                <div class="group col">
+                <div class="group col fixed-label">
                   <input type="text" formControlName="Celular" [(ngModel)]="Celular" required (keypress)="onKeyPress($event)" required maxlength="12" pattern="[0-9]+"/><span class="highlight"></span><span class="bar"></span>
                   <label>Celular</label>
                 </div>
                 <!--DIV CELULAR-->
-                <div class="group col">
+                <div class="group col fixed-label">
                   <input type="text" formControlName="Telefono" [(ngModel)]="Telefono" required (keypress)="onKeyPress($event)" required maxlength="12" pattern="[0-9]+" /><span class="highlight"></span><span class="bar"></span>
                   <label>Teléfono</label>
                 </div>
             <!-- DIV DIRECCIÓN -->
-                <div class="group col">
+                <div class="group col fixed-label">
                     <input type="text" formControlName="Direccion" [(ngModel)]="Direccion" required maxlength="100"/>
                     <span class="highlight"></span><span class="bar"></span>
                     <label>Dirección</label>
@@ -169,8 +169,21 @@
                 <option>7MO-A-23</option>
                 <option>10BTP-A-23</option>
               </select><span class="highlight"></span><span class="bar"></span>
-                <label>Grado</label>
+                <label>ID Grado</label>
           </div>
+        <!--DIV GRADO-->
+        <div class="group col"> 
+          <select formControlName="Grado" [(ngModel)]="Grado" required>
+              <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
+              <option>SÉPTIMO</option>
+              <option>OCTAVO</option>
+              <option>NOVENO</option>
+              <option>DÉCIMO</option>
+              <option>UNDÉCIMO</option>
+              <option>DOUDÉCIMO</option>
+              </select><span class="highlight"></span><span class="bar"></span>
+              <label>Grado</label>
+        </div>
         <!--DIV SECCIÓN-->
           <div class="group col"> 
               <select formControlName="Seccion" [(ngModel)]="Seccion" required>
@@ -195,13 +208,13 @@
           <div class="group col"> 
             <select formControlName="Modalidad" [(ngModel)]="Modalidad" required>
               <option value="" disabled selected hidden></option> <!--Default espacio o select en blanco-->
-              <option selected>&nbsp;EDUCACIÓN PRE-BÁSICA</option>
-              <option value="1">&nbsp;I CICLO DE EDUCACIÓN BÁSICA</option>
-              <option value="2">&nbsp;II CICLO DE EDUCACIÓN BÁSICA</option>
-              <option value="3">&nbsp;III CICLO DE EDUCACIÓN BÁSICA</option>
-              <option value="4">&nbsp;BACHILLERATO TÉCNICO PROFESIONAL</option>
-              <option value="5">&nbsp;BACHILLERATO TÉCNICO PROFESIONAL EN INFORMÁTICA</option>
-              <option value="6">&nbsp;BACHILLERATO PROFESIONAL EN CIENCIAS Y HUMANIDADES (BILINGÜE)</option>
+              <option selected>EDUCACIÓN PRE-BÁSICA</option>
+              <option value="1">I CICLO DE EDUCACIÓN BÁSICA</option>
+              <option value="2">II CICLO DE EDUCACIÓN BÁSICA</option>
+              <option value="3">III CICLO DE EDUCACIÓN BÁSICA</option>
+              <option value="4">BACHILLERATO TÉCNICO PROFESIONAL</option>
+              <option value="5">BACHILLERATO TÉCNICO PROFESIONAL EN INFORMÁTICA</option>
+              <option value="6">BACHILLERATO PROFESIONAL EN CIENCIAS Y HUMANIDADES (BILINGÜE)</option>
             </select><span class="highlight"></span><span class="bar"></span>
             <label>Modalidad</label>
           </div>
@@ -247,7 +260,7 @@
                 <option>REINGRESO</option>
                 <option>PRIMER INGRESO</option>
             </select><span class="highlight"></span><span class="bar"></span>
-            <label>EstadoMatricula</label>
+            <label>Estado Matricula</label>
           </div>
         <!--DIV FECHA DE INGRESO-->
           <div class="group col fixed-label"> 
@@ -256,11 +269,11 @@
           </div>
         <!--DIV JORNADA-->
           <div class="group col"> 
-              <select formControlName="EstadoMatricula" [(ngModel)]="EstadoMatricula" required>
+              <select formControlName="Estado" [(ngModel)]="Estado" required>
                 <option selected>ACTIVO</option> <!--Default espacio o select en blanco-->    
                 <option >INACTIVO</option>
               </select><span class="highlight"></span><span class="bar"></span>
-              <label>Estado de Matricula</label>
+              <label>Estado</label>
           </div>
           <!-- DIV DIRECCIÓN ESTUDIANTE -->
                 <div class="group col">
@@ -321,41 +334,90 @@
           <thead class="headcolum">
               <tr> 
                 <!-- Encabezados de Columnas -->
-                  <th scope="col">Identidad</th>
-                  <th scope="col">Nombre del Encargado(a)</th>
-                  <th scope="col">ID</th>
-                  <th scope="col">Parentesco</th>
-                  <th scope="col">Profesión</th>
+                  <th scope="col">Año</th>
+                  <th scope="col">ID Matricula</th>
+                  <th scope="col">ID Estudiante</th>
+                  <th scope="col" class="ancho-de-celda">Nombre Estudiante</th>
                   <th scope="col">Género</th>
+                  <th scope="col">Edad</th>
+                  <th scope="col">Fecha Nacimiento</th>
+                  <th scope="col">Lugar de Nacimiento</th>
+                  <th scope="col">Celular</th>
+                  <th scope="col">Telefono</th>
+                  <th scope="col">Correo</th>
+                  <th scope="col" class="ancho-de-celda">ID IMV</th>
+                  <th scope="col">Nacionalidad</th>
+                  <th scope="col">Tipo Sangre</th>
+                  <th scope="col" class="ancho-de-celda">ID Grado</th>
+                  <th scope="col">Grado</th>
+                  <th scope="col">Sección</th>
+                  <th scope="col">Jornada</th>
+                  <th scope="col" class="ancho-de-celda">Modalidad</th>
+                  <th scope="col" class="ancho-de-celda">Instituto Procedente</th>
+                  <th scope="col">Beca</th>
+                  <th scope="col">Repitente</th>
+                  <th scope="col">Alergia</th>
+                  <th scope="col">Vacunas Covid</th>
+                  <th scope="col">Estado Matricula</th>
+                  <th scope="col" class="ancho-de-celda">Fecha Ingreso</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col" class="ancho-de-celda">Dirección Estudiante</th>
+                  <th scope="col" class="ancho-de-celda">Observación Estudiante</th>
+                      <!-- Encargado -->
+                  <th scope="col">Identidad</th>
+                  <th scope="col" class="ancho-de-celda">Nombre del Encargado(a)</th>
+                  <th scope="col">ID Encargado</th>
+                  <th scope="col">Parentesco</th>
                   <th scope="col">Celular</th>
                   <th scope="col">Teléfono</th>
-                  <th scope="col">Correo</th>
-                  <th scope="col">Dirección</th>
-                  <th scope="col">Observación</th>
-                  <th scope="col">Editar</th>
-                  <th scope="col">Borrar</th>
+                  <th scope="col" class="ancho-de-celda">Dirección</th>
+                  <th scope="col" class="ancho-de-celda">Observación</th>
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let encargado of listaEncargado;  let i = index">
-                  <td>{{encargado.Identidad}}</td>
-                  <td>{{encargado.NombreDelEncargado}}</td>
-                  <td>{{encargado.IDEncargado}}</td>
-                  <td>{{encargado.Parentesco}}</td>
-                  <td>{{encargado.Profesion}}</td>
-                  <td>{{encargado.Genero}}</td>
-                  <td>{{encargado.Celular}}</td>
-                  <td>{{encargado.Telefono}}</td>
-                  <td>{{encargado.Correo}}</td>
-                  <td>{{encargado.Direccion}}</td>
-                  <td>{{encargado.Observacion}}</td>
-                  <td><i class="las la-edit" (click)="editarEncargado(i)"></i></td>
-                  <td><i class="las la-trash-alt" (click)="eliminarEncargado(i)"></i></td>
+              <tr *ngFor="let matricula of listaMatriculados;  let i = index">
+                  <!-- TABLA DATOS DE MATRICULA ESTUDIANTIL -->
+                  <td>{{matricula.selectedYear}}</td>
+                  <td>{{matricula.IDMatricula}}</td>
+                  <td>{{matricula.IdentidadEstudiante}}</td>
+                  <td class="ancho-de-celda">{{matricula.NombreDelEstudiante}}</td>
+                  <td>{{matricula.GeneroEstudiante}}</td>
+                  <td>{{matricula.Edad}}</td>
+                  <td>{{matricula.fechaNacimiento}}</td>
+                  <td>{{matricula.LugarNacimiento}}</td>
+                  <td>{{matricula.CelularEstudiante}}</td>
+                  <td>{{matricula.TelefonoEstudiante}}</td>
+                  <td>{{matricula.CorreoEstudiante}}</td>
+                  <td class="ancho-de-celda">{{matricula.CodigoIMV}}</td>
+                  <td>{{matricula.Nacionalidad}}</td>
+                  <td>{{matricula.TipoSangre}}</td>
+                  <td class="ancho-de-celda">{{matricula.IDGrado}}</td>
+                  <td>{{matricula.Grado}}</td>
+                  <td>{{matricula.Seccion}}</td>
+                  <td>{{matricula.Jornada}}</td>
+                  <td class="ancho-de-celda">{{matricula.Modalidad}}</td>
+                  <td class="ancho-de-celda">{{matricula.LugarProviene}}</td>
+                  <td>{{matricula.Becado}}</td>
+                  <td>{{matricula.Repitente}}</td>
+                  <td>{{matricula.Alergias}}</td>
+                  <td>{{matricula.VacunasCovid}}</td>
+                  <td>{{matricula.EstadoMatricula}}</td>
+                  <td class="ancho-de-celda">{{matricula.fechaIngreso}}</td>
+                  <td>{{matricula.Estado}}</td>
+                  <td class="ancho-de-celda">{{matricula.DireccionEstudiante}}</td>
+                  <td class="ancho-de-celda">{{matricula.ObservacionEstudiante}}</td>
+                  <!-- TABLA DATOS DEL ENCARGADO -->
+                  <td>{{matricula.Identidad}}</td>
+                  <td class="ancho-de-celda">{{matricula.NombreDelEncargado}}</td>
+                  <td>{{matricula.IDEncargado}}</td>
+                  <td>{{matricula.Parentesco}}</td>
+                  <td>{{matricula.Celular}}</td>
+                  <td>{{matricula.Telefono}}</td>
+                  <td class="ancho-de-celda">{{matricula.Direccion}}</td>
+                  <td class="ancho-de-celda">{{matricula.Observacion}}</td>
               </tr>
           </tbody>
       </table>
   </div>
-  <!-- <ag-grid-angular class="ag-theme-alpine" style="height: 480px; width: 800px;" #myDataGrid [rowData]="rowdata" 
-   [columnDefs]="columnDefs">
-  </ag-grid-angular> -->
-</div>
+</div> <!-- Fin de div dbpanel -->
+<footer class="footer">Derechos Reservados 2024 ®</footer>

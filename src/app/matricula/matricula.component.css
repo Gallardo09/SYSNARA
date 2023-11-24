@@ -181,36 +181,56 @@ label {
 .tabletitle{
   text-align: center; /*Alinear texto al centro*/
   vertical-align: middle; /*Alinear texto al medio*/
-  font-size: 12px;
+  font-size: 6px;
   color: #0c5aa8;
   padding-top: 0px;
   padding-bottom: 0px;
   font-weight: bold; 
 }
 .headcolum{
-  font-size: 14px;
+  font-size: 12px;
   vertical-align: middle;
   background-color: #0c5aa8;
   color: white;
 }
 .table-wrapper /*BARRA DE DESPLAZAMIENTO*/
 {
-  max-height: 420px; /* Establece la altura máxima deseada */
+  max-height: 800px; /* Establece la altura máxima deseada */
   overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando se supera la altura máxima */
 }
 .table{ 
+  padding: 0;
+  margin: 0;
   text-align: center; /*Alinear texto al centro*/
   vertical-align: middle; /*Alinear texto al medio*/
   border: 1px solid #0c5aa8;
   border-collapse: collapse;
-  width: 100%;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .table-rounded {
-  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  border-radius: 1px;
   overflow: hidden;
 }
+.table tbody tr th { /*Espacios dentro de la fila EMCABEZADO*/
+  padding: 0px 2px 0px 2px ; /*Arriba Derecha Abajo Izquierda*/
+}
+.table tbody td { /*Espacios dentro de las FILAS*/
+  padding: 0px 2.5px 0px 2.5px ; /*Arriba Derecha Abajo Izquierda*/
+  border: 1px solid #e0e0e0; /* Ajusta el color y grosor del borde según tus preferencias */
+  padding: 0px 3px 0px 3px; /* Ajusta el relleno según tus necesidades */
+}
+/* Asegurarse de que no haya bordes en los lados extremos de la tabla */
+.table tbody tr td:first-child {
+  border-left: none;
+}
+
+.table tbody tr td:last-child {
+  border-right: none;
+}
+
 .table tbody tr td i{
   font-size: 20px; /*Tamaño del icono borrar*/
 }
@@ -226,10 +246,18 @@ label {
 .dbpanel{
   margin-top: -40px;
 }
+.ancho-de-celda {
+  width: auto; /* Establece el ancho deseado, usando !important para asegurar prioridad */
+  /* Otras propiedades opcionales que puedes considerar agregar: */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow: hidden; /* Oculta el contenido que se desborda del contenedor */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se desborda */
+}
+
 /*-----------------------------------------------------------------------*/
 /*UBICAR EL LABEL EN LA PARTE SUPERIOR DEL INPUT DE MANERA ESTATICA DEL ID ENCARGADO*/
 .fixed-label label {
-  top: -8px; /* Espacio entre el texto dentro del input y el label */
+  top: -7px; /* Espacio entre el texto dentro del input y el label */
   font-size: 12px;
   color: #2196F3;
   position: absolute;
@@ -385,4 +413,12 @@ label {
   font-size: 90px;
   margin-top: 20px;
   margin-bottom: 5px;
+}
+
+.footer{
+  margin-top: 10px;
+  padding-bottom: 20px;
+  font-size: auto;
+  align-items: center; /*alinear el texto en medio de la fila*/
+  text-align: center;
 }
