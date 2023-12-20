@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-matricula',
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./matricula.component.css']
 })
 export class MatriculaComponent {
+  @ViewChild('miTabla') miTabla: ElementRef | undefined;
 //Ejemplo DATOS INICIALIDADOS
 Identidad: string = "0502199400950";
 NombreDelEncargado: string = "JUAN ANGEL RAMOS PEREZ";
@@ -28,10 +29,10 @@ Observacion: string = "NINGUNA";
 // Direccion?: string;
 // Observacion?: string;
 totalfilas?: string; // Inicialmente, el total de filas es 0
-registroencargados: any; /*Propiedad para egragar valores a la tabla.*/
+/*registroencargados: any; /*Propiedad para egragar valores a la tabla.*/
 contadorFilas: number = 0; /*Contador de las filas en la tabla*/
 contadorEstudiantesMatriculados: number = 0; //Cuenta la cantidad de registros en la tabla.
-contadorNiñas: number = 0; //Cuenta la cantidad de niñas matriculadas en la tabla.
+contadorNinas: number = 0; //Cuenta la cantidad de niñas matriculadas en la tabla.
 contadorVarones: number = 0; //Cuenta la cantidad de varones en la tabla.
 contadorPrimerIngreso: number = 0; //Cuenta la cantidad de estudiantes de Primer Ingreso en la tabla.
 contadorReingreso: number = 0; //Cuenta la cantidad de estudiantes de Reingreso en la tabla.
@@ -39,7 +40,7 @@ contadorReingreso: number = 0; //Cuenta la cantidad de estudiantes de Reingreso 
 listaMatriculados: any[] = [ /*Listas en la table*/
 {
   //#1 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '1', IdentidadEstudiante:'0502200512345', NombreDelEstudiante: 'LUISA LANE RAMOS RAPALO', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'9-02-2005', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'98969591', TelefonoEstudiante:'25261444', CorreoEstudiante:'luisalane@gmail.com', 
+  selectedYear: '2023', IDMatricula: '1', IdentidadEstudiante:'0502200512345', NombreDelEstudiante: 'LUISA LANE RAMOS RAPALO', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'2005-10-26', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'98969591', TelefonoEstudiante:'25261444', CorreoEstudiante:'luisalane@gmail.com', 
   CodigoIMV:'IMV-00-1', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'A+', IDGrado:'7MO-A-23', Grado:'SÉPTIMO', Seccion:'A', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'3', EstadoMatricula:'REINGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -48,7 +49,7 @@ listaMatriculados: any[] = [ /*Listas en la table*/
 },
 {
   //#2 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '2', IdentidadEstudiante:'0502200612253', NombreDelEstudiante: 'EMMA CAROLINA LANZA ARRIGA', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'9-02-2006', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'88586969', TelefonoEstudiante:'25261444', CorreoEstudiante:'arriaga@gmail.com', 
+  selectedYear: '2023', IDMatricula: '2', IdentidadEstudiante:'0502200612253', NombreDelEstudiante: 'EMMA CAROLINA LANZA ARRIGA', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'2006-10-18', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'88586969', TelefonoEstudiante:'25261444', CorreoEstudiante:'arriaga@gmail.com', 
   CodigoIMV:'IMV-00-2', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'O+', IDGrado:'7MO-A-23', Grado:'SÉPTIMO', Seccion:'A', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'3', EstadoMatricula:'REINGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -57,7 +58,7 @@ listaMatriculados: any[] = [ /*Listas en la table*/
 },
 {
   //#3 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '3', IdentidadEstudiante:'0101200400523', NombreDelEstudiante: 'BRAYAN OCTAVIO OCONNER CRUZ', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'9-02-2006', LugarNacimiento:'ATLANTIDA', CelularEstudiante:'96966969', TelefonoEstudiante:'26252425', CorreoEstudiante:'cruz@gmail.com', 
+  selectedYear: '2023', IDMatricula: '3', IdentidadEstudiante:'0101200400523', NombreDelEstudiante: 'BRAYAN OCTAVIO OCONNER CRUZ', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'2005-10-15', LugarNacimiento:'ATLANTIDA', CelularEstudiante:'96966969', TelefonoEstudiante:'26252425', CorreoEstudiante:'cruz@gmail.com', 
   CodigoIMV:'IMV-00-3', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'A+', IDGrado:'7MO-A-23', Grado:'SÉPTIMO', Seccion:'A', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'2', EstadoMatricula:'PRIMER INGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -66,7 +67,7 @@ listaMatriculados: any[] = [ /*Listas en la table*/
 },
 { 
   //#4 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '4', IdentidadEstudiante:'1801200665432', NombreDelEstudiante: 'DAVID JOSUE VACA TORO', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'9-02-2006', LugarNacimiento:'YORO', CelularEstudiante:'99995522', TelefonoEstudiante:'22223636', CorreoEstudiante:'vacatoro@gmail.com', 
+  selectedYear: '2023', IDMatricula: '4', IdentidadEstudiante:'1801200665432', NombreDelEstudiante: 'DAVID JOSUE VACA TORO', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'2005-10-15', LugarNacimiento:'YORO', CelularEstudiante:'99995522', TelefonoEstudiante:'22223636', CorreoEstudiante:'vacatoro@gmail.com', 
   CodigoIMV:'IMV-00-4', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'A+', IDGrado:'7MO-B-23', Grado:'SÉPTIMO', Seccion:'B', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'2', EstadoMatricula:'PRIMER INGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -74,12 +75,13 @@ listaMatriculados: any[] = [ /*Listas en la table*/
   Celular:'88999988',Telefono:'25562525',Direccion:'RES. LAS FUENTES, CHOLOMA',Observacion:'NINGUNA' 
 },
 ];
-contadorNi: any;
 
 ngOnInit(): void { //ngOnInit() se ejecuta antes de que las vistas del componente hayan sido inicializadas
 // Establece el valor del contador de filas en el campo ID Docente
 this.totalfilas = (this.contadorFilas + 1).toString();
 this.contarFilasTabla();
+this.contadorNinas = 0;
+
 }
 
 /*AGREGAR DATOS A LA TABLA CON EL FORMULARIO*/
@@ -128,7 +130,7 @@ this.formMatricula = this.fb.group({
   
   /*Matricula FORM*/
   contadorEstudiantesMatriculados: [{ value: 0, disabled: true }, [Validators.required]],
-  contadorNiñas: [{ value: 0, disabled: true }, [Validators.required]],
+  contadorNinas: [{ value: 0, disabled: true }, [Validators.required]],
   contadorVarones: [{ value: 0, disabled: true }, [Validators.required]],
   contadorPrimerIngreso: [{ value: 0, disabled: true }, [Validators.required]],
   contadorReingreso: [{ value: 0, disabled: true }, [Validators.required]],
@@ -225,7 +227,7 @@ LimpiarFormMatricula(): void{
 this.listaMatriculados = [
   {
   //#1 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '1', IdentidadEstudiante:'0502200512345', NombreDelEstudiante: 'LUISA LANE RAMOS RAPALO', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'9-02-2005', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'98969591', TelefonoEstudiante:'25261444', CorreoEstudiante:'luisalane@gmail.com', 
+  selectedYear: '2023', IDMatricula: '1', IdentidadEstudiante:'0502200512345', NombreDelEstudiante: 'LUISA LANE RAMOS RAPALO', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'2005-09-26', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'98969591', TelefonoEstudiante:'25261444', CorreoEstudiante:'luisalane@gmail.com', 
   CodigoIMV:'IMV-00-1', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'A+', IDGrado:'7MO-A-23', Grado:'SÉPTIMO', Seccion:'A', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'3', EstadoMatricula:'REINGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -234,7 +236,7 @@ this.listaMatriculados = [
 },
 {
   //#2 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '2', IdentidadEstudiante:'0502200612253', NombreDelEstudiante: 'EMMA CAROLINA LANZA ARRIGA', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'9-02-2006', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'88586969', TelefonoEstudiante:'25261444', CorreoEstudiante:'arriaga@gmail.com', 
+  selectedYear: '2023', IDMatricula: '2', IdentidadEstudiante:'0502200612253', NombreDelEstudiante: 'EMMA CAROLINA LANZA ARRIGA', GeneroEstudiante:'FEMENINO', Edad: '15', fechaNacimiento:'2006-02-25', LugarNacimiento:'SAN PEDRO SULA', CelularEstudiante:'88586969', TelefonoEstudiante:'25261444', CorreoEstudiante:'arriaga@gmail.com', 
   CodigoIMV:'IMV-00-2', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'O+', IDGrado:'7MO-A-23', Grado:'SÉPTIMO', Seccion:'A', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'3', EstadoMatricula:'REINGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -243,7 +245,7 @@ this.listaMatriculados = [
 },
 {
   //#3 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '3', IdentidadEstudiante:'0101200400523', NombreDelEstudiante: 'BRAYAN OCTAVIO OCONNER CRUZ', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'9-02-2006', LugarNacimiento:'ATLANTIDA', CelularEstudiante:'96966969', TelefonoEstudiante:'26252425', CorreoEstudiante:'cruz@gmail.com', 
+  selectedYear: '2023', IDMatricula: '3', IdentidadEstudiante:'0101200400523', NombreDelEstudiante: 'BRAYAN OCTAVIO OCONNER CRUZ', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'2006-02-09', LugarNacimiento:'ATLANTIDA', CelularEstudiante:'96966969', TelefonoEstudiante:'26252425', CorreoEstudiante:'cruz@gmail.com', 
   CodigoIMV:'IMV-00-3', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'A+', IDGrado:'7MO-A-23', Grado:'SÉPTIMO', Seccion:'A', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'2', EstadoMatricula:'PRIMER INGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -252,7 +254,7 @@ this.listaMatriculados = [
 },
 { 
   //#4 Datos Estudiantes
-  selectedYear: '2023', IDMatricula: '4', IdentidadEstudiante:'1801200665432', NombreDelEstudiante: 'DAVID JOSUE VACA TORO', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'9-02-2006', LugarNacimiento:'YORO', CelularEstudiante:'99995522', TelefonoEstudiante:'22223636', CorreoEstudiante:'vacatoro@gmail.com', 
+  selectedYear: '2023', IDMatricula: '4', IdentidadEstudiante:'1801200665432', NombreDelEstudiante: 'DAVID JOSUE VACA TORO', GeneroEstudiante:'MASCULINO', Edad: '16', fechaNacimiento:'2006-11-15', LugarNacimiento:'YORO', CelularEstudiante:'99995522', TelefonoEstudiante:'22223636', CorreoEstudiante:'vacatoro@gmail.com', 
   CodigoIMV:'IMV-00-4', Nacionalidad:'HONDUREÑO(A)', TipoSangre:'A+', IDGrado:'7MO-B-23', Grado:'SÉPTIMO', Seccion:'B', Jornada:'MATUTINA', Modalidad:'III CICLO DE EDUCACIÓN BÁSICA', LugarProviene:'INSTITUTO JUAN LINDO DE ULUA', Becado:'SIN BECA', Repitente:'NO', Alergias:'NO', VacunasCovid:'2', EstadoMatricula:'PRIMER INGRESO', fechaIngreso:'23-11-2023', Estado: 'ACTIVO',
   DireccionEstudiante:'CHOLOMA, CORTÉS', ObservacionEstudiante:'NINGUNA',
   //Datos del padre
@@ -279,36 +281,6 @@ onKeyPress(event: KeyboardEvent) {
     console.log('Debe ingresar solo números.')
   }
 }
-/*--------------------------------------- EDITAR (BOTÓN)  -----------------------------------------------*/
-// Función para editar la matricula
-EditarMatricula() {
-// Obtén el IDEncargado que deseas verificar
-const idEncargadoAEditar = this.IDEncargado;
-// Obtén la Identidad que deseas verificar
-// const IdentidadEditar = this.Identidad;
-// Busca el ID Matricula en la lista por su IDEncargado y su Identidad
-const matriculaExistente = this.listaMatriculados.find(matricula => matricula.IDEncargado === idEncargadoAEditar);
-
-if (matriculaExistente) {
-  // Actualiza los valores de la Matricula con los valores de los campos de entrada
-  matriculaExistente.Identidad = this.Identidad;
-  matriculaExistente.NombreDelEncargado = this.NombreDelEncargado;
-  matriculaExistente.Parentesco = this.Parentesco;
-  matriculaExistente.Celular = this.Celular;
-  matriculaExistente.Telefono = this.Telefono;
-  matriculaExistente.Correo = this.Correo;
-  matriculaExistente.Direccion = this.Direccion;
-  matriculaExistente.Observacion = this.Observacion;
-  console.log('La matricula con ID ' + idEncargadoAEditar + ' ya esta registrado en la lista.');
-  this.toastr.success('Datos editados correctamente.', 'Aviso', { timeOut: 2000 });
-} else {
-  // El matricula no existe en la lista, muestra un mensaje de error o realiza la lógica necesaria
-  console.log('La matricula con ID ' + idEncargadoAEditar + ' no existe en la lista.');
-  // La Matricula no existe en la lista, muestra un mensaje de error o realiza la lógica necesaria
-  this.toastr.error('Primero seleccione en la tabla el elemento a editar.', 'Advertencia', { timeOut: 2000 });
-  
-}
-}
 
 /*--------------------------------------- EDITAR (TABLA) -----------------------------------------------*/
 editarEncargado(i: number) {
@@ -328,8 +300,6 @@ this.formMatricula.patchValue({
   Observacion: matricula.Observacion,
 });
 
-// // Asegurarse de que el IDEncargado quede deshabilitado
-// this.formMatricula.get('IDEncargado').disable();
 }
 
 /*------------------------ELIMINAR----------------------------------------------------------*/
@@ -351,19 +321,64 @@ ngAfterViewInit(): void {
 }
 
 contarFilasTabla(): void {
-// Obtén la referencia a la tabla por su id
-const miTabla = document.getElementById("miTabla");
+  console.log('Entrando a contarFilasTabla');
+  this.contadorEstudiantesMatriculados = 0;
+  this.contadorNinas = 0;
+  this.contadorVarones = 0;
+  this.contadorPrimerIngreso = 0;
+  this.contadorReingreso = 0;
 
-if (miTabla) {
-  // Obtén todas las filas de la tabla
-  const filas = miTabla.getElementsByTagName("tr");
-  // Muestra la cantidad de filas
-  this.contadorEstudiantesMatriculados = filas.length - 1; // Resta 1 para excluir la fila de encabezado
-} else {
-  // Si la tabla no existe, actualiza el contador usando la longitud de listaEncargado
-  this.contadorEstudiantesMatriculados = this.listaMatriculados.length;
+  if (this.miTabla && this.miTabla.nativeElement) {
+    const filas = this.miTabla.nativeElement.getElementsByTagName('tr');
+    console.log('Número de filas:', filas.length - 1);
+    this.contadorEstudiantesMatriculados = filas.length - 1;
+
+    for (let i = 1; i < filas.length; i++) {
+      const generoColumnIndex = 4; // Índice de la columna "Género" (empezando desde 0)
+      const estadoMatriculaColumnIndex = 25; // Índice de la columna "EstadoMatricula" (empezando desde 0)
+
+      const genero = filas[i].getElementsByTagName('td')[generoColumnIndex].innerText;
+      const estadoMatricula = filas[i].getElementsByTagName('td')[estadoMatriculaColumnIndex].innerText;
+
+      // Contar la columna "Género"
+      if (genero.trim().toUpperCase() === 'FEMENINO') {
+        this.contadorNinas++;
+      } else if (genero.trim().toUpperCase() === 'MASCULINO') {
+        this.contadorVarones++;
+      }
+
+      // Contar la columna "EstadoMatricula"
+      if (estadoMatricula.trim().toUpperCase() === 'PRIMER INGRESO') {
+        this.contadorPrimerIngreso++;
+      } else if (estadoMatricula.trim().toUpperCase() === 'REINGRESO') {
+        this.contadorReingreso++;
+      }
+    }
+
+    console.log('Número de niñas:', this.contadorNinas);
+    console.log('Número de varones:', this.contadorVarones);
+    console.log('Número de primer ingreso:', this.contadorPrimerIngreso);
+    console.log('Número de reingreso:', this.contadorReingreso);
+  } else {
+    console.log('No se encontró la tabla. Usando la longitud de la lista.');
+    this.contadorEstudiantesMatriculados = this.listaMatriculados.length;
+
+    // Contar en listaMatriculados
+    this.contadorNinas = this.listaMatriculados.filter(matricula => matricula.GeneroEstudiante.trim().toUpperCase() === 'FEMENINO').length;
+    this.contadorVarones = this.listaMatriculados.filter(matricula => matricula.GeneroEstudiante.trim().toUpperCase() === 'MASCULINO').length;
+    this.contadorPrimerIngreso = this.listaMatriculados.filter(matricula => matricula.EstadoMatricula.trim().toUpperCase() === 'PRIMER INGRESO').length;
+    this.contadorReingreso = this.listaMatriculados.filter(matricula => matricula.EstadoMatricula.trim().toUpperCase() === 'REINGRESO').length;
+  }
+
+  console.log('Salida de contarFilasTabla. Contador de estudiantes matriculados:', this.contadorEstudiantesMatriculados);
+  console.log('Salida de contarFilasTabla. Contador de niñas:', this.contadorNinas);
+  console.log('Salida de contarFilasTabla. Contador de varones:', this.contadorVarones);
+  console.log('Salida de contarFilasTabla. Contador de primer ingreso:', this.contadorPrimerIngreso);
+  console.log('Salida de contarFilasTabla. Contador de reingreso:', this.contadorReingreso);
 }
-}
+
+
+
 
 /*------------------------------- BUSCAR ENCARGADO ---------------------------------------*/
 BuscarEncargado() {
@@ -373,7 +388,7 @@ BuscarEncargado() {
   // Filtra la lista de la matricula y almacena los coincidentes en una nueva lista
   const MatriculaFiltrados = this.listaMatriculados.filter(matricula => matricula.Identidad === identidadABuscar);
 
-  // Actualiza this.listaEncargado con los datos coincidentes
+  // Actualiza this.listaMatriculados con los datos coincidentes
   this.listaMatriculados = MatriculaFiltrados;
 }  
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -386,8 +401,8 @@ NombreDelEstudiante: string="LUIS ANGEL PEREZ GOMEZ";
 CodigoIMV: string="IMV-00-6";
 IDMatricula: string="6";
 Nacionalidad: string="HONDUREÑO(A)";
-fechaNacimiento: Date = new Date(2005,2,23);
-Edad: number = 16;
+fechaNacimiento: Date = new Date(1994, 10, 23);
+Edad?: number;
 GeneroEstudiante: string="MASCULINO";
 CorreoEstudiante: string="luisangel@gmail.com";
 LugarNacimiento: string="SAN PEDRO SULA";
@@ -407,18 +422,177 @@ Repitente: string="NO";
 Alergias: string="NO";
 VacunasCovid: string="3";
 EstadoMatricula: string="REINGRESO";
-fechaIngreso: Date = new Date(23,11,2023);
+fechaIngreso: Date = new Date(2023, 10, 23);
 Estado: string="ACTIVO";
+edad?: number;
+IDMatriculaForm?: string; //EliminarMatricula
 
 BuscarEstudiante(){
-
-}
-
-CancelarMatricula(){
 
 }
 
 ReportesMatricula(){
 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
+////////////////////////// SELECCIONAR FINAL ///////////////////////////////////
+
+filaSeleccionada: string | null = null;
+
+// Método para seleccionar la fila
+seleccionarFila(idMatricula: string): void {
+     // Actualiza la fila seleccionada
+     this.filaSeleccionada = this.filaSeleccionada === idMatricula ? null : idMatricula;
+
+     // Encuentra el objeto de matrícula correspondiente al ID seleccionado
+     const matriculaSeleccionada = this.listaMatriculados.find(matricula => matricula.IDMatricula === this.filaSeleccionada);
+ 
+     if (matriculaSeleccionada) {
+       // Utiliza el FormBuilder para actualizar los valores del formulario con los datos de la matrícula
+       this.formMatricula.patchValue({
+        IdentidadEstudiante: matriculaSeleccionada.IdentidadEstudiante,
+        NombreDelEstudiante: matriculaSeleccionada.NombreDelEstudiante,
+        GeneroEstudiante: matriculaSeleccionada.GeneroEstudiante,
+        Edad: matriculaSeleccionada.Edad,
+        fechaNacimiento: matriculaSeleccionada.fechaNacimiento,
+        LugarNacimiento: matriculaSeleccionada.LugarNacimiento,
+        CelularEstudiante: matriculaSeleccionada.CelularEstudiante,
+        TelefonoEstudiante: matriculaSeleccionada.TelefonoEstudiante,
+        CorreoEstudiante: matriculaSeleccionada.CorreoEstudiante,
+        CodigoIMV: matriculaSeleccionada.CodigoIMV,
+        Nacionalidad: matriculaSeleccionada.Nacionalidad,
+        TipoSangre: matriculaSeleccionada.TipoSangre,
+        IDGrado: matriculaSeleccionada.IDGrado,
+        Grado: matriculaSeleccionada.Grado,
+        Seccion: matriculaSeleccionada.Seccion,
+        Jornada: matriculaSeleccionada.Jornada,
+        Modalidad: matriculaSeleccionada.Modalidad,
+        LugarProviene: matriculaSeleccionada.LugarProviene,
+        Becado: matriculaSeleccionada.Becado,
+        Repitente: matriculaSeleccionada.Repitente,
+        Alergias: matriculaSeleccionada.Alergias,
+        VacunasCovid: matriculaSeleccionada.VacunasCovid,
+        EstadoMatricula: matriculaSeleccionada.EstadoMatricula,
+        fechaIngreso: matriculaSeleccionada.fechaIngreso,
+        Estado: matriculaSeleccionada.Estado,
+        DireccionEstudiante: matriculaSeleccionada.DireccionEstudiante,
+        ObservacionEstudiante: matriculaSeleccionada.ObservacionEstudiante,
+
+        // Datos del padre o encargado
+        Identidad: matriculaSeleccionada.Identidad,
+        NombreDelEncargado: matriculaSeleccionada.NombreDelEncargado,
+        IDEncargado: matriculaSeleccionada.IDEncargado,
+        Parentesco: matriculaSeleccionada.Parentesco,
+        Celular: matriculaSeleccionada.Celular,
+        Telefono: matriculaSeleccionada.Telefono,
+        Direccion: matriculaSeleccionada.Direccion,
+        Observacion: matriculaSeleccionada.Observacion,
+       });
+  }
 }
+///////////////////////////////////////////////////////////////////////////////////////
+////////////////////////// CALCULAR LA EDAD ///////////////////////////////////
+calcularEdad() {
+  const fechaNacimientoString = this.fechaNacimiento;
+
+  if (fechaNacimientoString) {
+    const fechaNacimiento = new Date(fechaNacimientoString);
+    const hoy = new Date();
+    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+    if (hoy.getMonth() < fechaNacimiento.getMonth() ||
+        (hoy.getMonth() === fechaNacimiento.getMonth() && hoy.getDate() < fechaNacimiento.getDate())) {
+      this.Edad = edad - 1;
+    } else {
+      this.Edad = edad;
+    }
+  }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*--------------------------------------- ELIMINAR MATRICULA (BOTÓN)  -----------------------------------------------*/
+
+// Esta función se llama cuando se hace clic en el botón "Eliminar"
+EliminarMatricula(): void {
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*--------------------------------------- EDITAR (BOTÓN)  -----------------------------------------------*/
+  // Función para editar matrícula
+  // EditarMatricula() {
+  //   // Obtén el índice de la fila seleccionada
+  //   const index = this.listaMatriculados.findIndex(matricula => matricula.IDMatricula === this.filaSeleccionada);
+  
+  //   if (index !== -1) {
+  //     // Obtén los valores del formulario
+  //     const matriculaEditada = this.formMatricula.value;
+  
+  //     // Guarda los valores originales de IDMatricula y CodigoIMV
+  //     const idMatriculaOriginal = this.listaMatriculados[index].IDMatricula;
+  //     const codigoIMVOriginal = this.listaMatriculados[index].CodigoIMV;
+  
+  //     // Actualiza todos los campos excepto IDMatricula y CodigoIMV
+  //     this.listaMatriculados[index] = { ...matriculaEditada, IDMatricula: idMatriculaOriginal, CodigoIMV: codigoIMVOriginal };
+  
+  //     console.log('Matrícula con ID ' + this.filaSeleccionada + ' editada correctamente.');
+  //     this.toastr.success('Datos de matrícula editados correctamente.', 'Aviso', { timeOut: 2000 });
+  //   } else {
+  //     console.log('No se encontró la matrícula con ID ' + this.filaSeleccionada);
+  //     this.toastr.error('Primero seleccione en la tabla el elemento a editar.', 'Advertencia', { timeOut: 2000 });
+  //   }
+  
+  // // Actualiza el contador de filas después de eliminar
+  // setTimeout(() => {
+  //   this.contarFilasTabla();
+  // }, 0);
+  // }
+  EditarMatricula() {
+    // Obtén el índice de la fila seleccionada
+    const index = this.listaMatriculados.findIndex(matricula => matricula.IDMatricula === this.filaSeleccionada);
+  
+    if (index !== -1) {
+      // Obtén los valores del formulario
+      const matriculaEditada = this.formMatricula.value;
+  
+      console.log('Valores del formulario:', matriculaEditada);
+  
+      // Guarda los valores originales de IDMatricula y CodigoIMV
+      const idMatriculaOriginal = this.listaMatriculados[index].IDMatricula;
+      const codigoIMVOriginal = this.listaMatriculados[index].CodigoIMV;
+      const NombreDelEncargadoOriginal = this.listaMatriculados[index].NombreDelEncargado;
+      const IDEncargadoOriginal = this.listaMatriculados[index].IDEncargado;
+      const ParentescoOriginal = this.listaMatriculados[index].Parentesco;
+      const CelularOriginal = this.listaMatriculados[index].Celular;
+      const TelefonoOriginal = this.listaMatriculados[index].Telefono;
+      const DireccionOriginal = this.listaMatriculados[index].Direccion;
+      const ObservacionOriginal = this.listaMatriculados[index].Observacion;
+      // Actualiza todos los campos excepto IDMatricula y CodigoIMV
+      this.listaMatriculados[index] = {
+        ...matriculaEditada,
+        IDMatricula: idMatriculaOriginal,
+        CodigoIMV: codigoIMVOriginal,
+        NombreDelEncargado: NombreDelEncargadoOriginal,
+        IDEncargadoOriginal: this.IDEncargado,
+        ParentescoOriginal: this.Parentesco,
+        CelularOriginal: this.Celular,
+        TelefonoOriginal: this.Telefono,
+        DireccionOriginal: this.Direccion,
+        ObservacionOriginal: this.Observacion,
+      };
+  
+      console.log('Matrícula con ID ' + this.filaSeleccionada + ' editada correctamente.');
+      this.toastr.success('Datos de matrícula editados correctamente.', 'Aviso', { timeOut: 2000 });
+    } else {
+      console.log('No se encontró la matrícula con ID ' + this.filaSeleccionada);
+      this.toastr.error('Primero seleccione en la tabla el elemento a editar.', 'Advertencia', { timeOut: 2000 });
+    }
+  
+    // Actualiza el contador de filas después de eliminar
+    setTimeout(() => {
+      this.contarFilasTabla();
+    }, 0);
+  }
+  
+  
+} //Fin export class 

@@ -422,3 +422,7 @@ label {
   align-items: center; /*alinear el texto en medio de la fila*/
   text-align: center;
 }
+/*----------------------------------- SELECCIONAR UNA FILA COMPLETA ------------------------------------*/
+.fila-seleccionada {
+  background-color: #cce5ff; /* Cambia esto al color que desees para la fila seleccionada */
+}

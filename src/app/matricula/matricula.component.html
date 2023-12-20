@@ -98,11 +98,11 @@
               </div>
             <!--DIV FECHA NACIMIENTO-->
                 <div class="group col fixed-label">
-                    <input type="date" formControlName="fechaNacimiento" [(ngModel)]="fechaNacimiento" required class="form-control">
+                    <input type="date" formControlName="fechaNacimiento" [(ngModel)]="fechaNacimiento" (input)="calcularEdad()" required class="form-control">
                     <label>Fecha Nacimiento</label>
                 </div>
               <!--DIV EDAD-->
-                <div class="group col">
+                <div class="group col fixed-label">
                     <input type="number" formControlName="Edad" [(ngModel)]="Edad" min="3" max="25" step="1"
                     required class="form-control">
                     <label>Edad</label>
@@ -296,23 +296,23 @@
       <i class="fa-solid fa-chart-pie"></i>
       <div><p class="text-white titulo">ESTADÍSTICA</p></div>    
           <div><p class="subtitulo">Estudiantes Registrados(as):</p></div>
-          <div><input type="text" class="RegistroContador" style="width: 170px" [(ngModel)]="contadorEstudiantesMatriculados" [disabled]="true" required ></div>
+          <div><input type="text" class="RegistroContador" style="width: 170px" [value]="contadorEstudiantesMatriculados" [disabled]="true" required ></div>
     </div>
     <div class="NiñasMatriculadas estadisMargen">
           <div><p class="subtitulo">Niñas Registrados(as):</p></div>
-          <div><input type="text" class="RegistroContador" style="width: 170px" [disabled]="true" required ></div>
+          <div><input type="text" class="RegistroContador" style="width: 170px" [value]="contadorNinas" [disabled]="true" required ></div>
     </div>
     <div class="VaronesMatriculados estadisMargen">
           <div><p class="subtitulo">Varones Registrados(as):</p></div>
-          <div><input type="text" class="RegistroContador" style="width: 170px" [disabled]="true" required ></div>
+          <div><input type="text" class="RegistroContador" style="width: 170px" [value]="contadorVarones" [disabled]="true" required ></div>
     </div>
     <div class="PrimerIngreso estadisMargen">
           <div><p class="subtitulo">Primer Ingreso:</p></div>
-          <div><input type="text" class="RegistroContador" style="width: 170px" [disabled]="true" required ></div>
+          <div><input type="text" class="RegistroContador" style="width: 170px" [value]="contadorPrimerIngreso" [disabled]="true" required ></div>
     </div>
     <div class="Reingreso estadisMargen">
           <div><p class="subtitulo">Reingreso:</p></div>
-          <div><input type="text" class="RegistroContador" style="width: 170px" [disabled]="true" required ></div>
+          <div><input type="text" class="RegistroContador" style="width: 170px" [value]="contadorReingreso" [disabled]="true" required ></div>
     </div>
   </div>
   <!------------ FORMULARIO DE BOTONES------------------>
@@ -321,7 +321,7 @@
                       <button class="btn btn-submit col-md-2" type="button" (click)="Matricular()">Matricular</button>
                       <button class="btn btn-submit col-md-2" type="button" (click)="EditarMatricula()">Editar</button>
                       <button class="btn btn-cancel col-md-2" type="button" (click)="LimpiarFormMatricula()">Limpiar</button>
-                      <button class="btn btn-cancel col-md-2" type="button" (click)="CancelarMatricula()">Cancelar</button>
+                      <button class="btn btn-cancel col-md-2" type="button" (click)="EliminarMatricula()">Eliminiar</button>
                       <button class="btn btn-cancel col-md-2" type="button" (click)="ReportesMatricula()">Reportes</button>
                   </div>
         </div>
@@ -375,8 +375,8 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let matricula of listaMatriculados;  let i = index">
-                  <!-- TABLA DATOS DE MATRICULA ESTUDIANTIL -->
+            <tr *ngFor="let matricula of listaMatriculados; let i = index" (click)="seleccionarFila(matricula.IDMatricula)" [ngClass]="{'fila-seleccionada': matricula.IDMatricula === filaSeleccionada}">              
+              <!-- TABLA DATOS DE MATRICULA ESTUDIANTIL -->
                   <td>{{matricula.selectedYear}}</td>
                   <td>{{matricula.IDMatricula}}</td>
                   <td>{{matricula.IdentidadEstudiante}}</td>
@@ -420,4 +420,8 @@
       </table>
   </div>
 </div> <!-- Fin de div dbpanel -->
+
 <footer class="footer">Derechos Reservados 2024 ®</footer>
+<button class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ...">
+  Save Changes
+</button>

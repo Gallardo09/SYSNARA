@@ -34,10 +34,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/assets/fontawesome-free-6.4.0-web/css/fontawesome.min.css",
-              "node_modules/tailwindcss/tailwind.css",
-              "node_modules/tailwindcss/screens.css",
-              "node_modules/tailwindcss/utilities.css",
-              "node_modules/tailwindcss/variants.css"
+              "node_modules/tailwindcss/dist/tailwind.css",
+              "node_modules/tailwindcss/dist/tailwind.min.css"
             ],
             "scripts": []
           },
