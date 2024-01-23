@@ -16,6 +16,7 @@
             "outputPath": "dist/imava",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": ["sweetalert2"],
             "polyfills": [
               "zone.js"
             ],
@@ -70,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "IMAVA:build:production"
+              "buildTarget": "IMAVA:build:production"
             },
             "development": {
-              "browserTarget": "IMAVA:build:development"
+              "buildTarget": "IMAVA:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "IMAVA:build"
+            "buildTarget": "IMAVA:build"
           }
         },
         "test": {
