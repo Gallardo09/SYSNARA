@@ -23,6 +23,7 @@ import { NotasComponent } from './notas/notas.component';
 import { ImprimirnotasComponent } from './imprimirnotas/imprimirnotas.component';
 import { HistoriaComponent } from './historia/historia.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 //Login
 //Dashboard
@@ -75,6 +76,7 @@ const routes: Routes = [
     FontAwesomeModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    HttpClientModule
   ],
   exports: 
   [

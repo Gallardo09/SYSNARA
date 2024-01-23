@@ -12,8 +12,10 @@
                             [class.green-icon]="this.form.get('year')?.valid"
                             [class.red-icon]="this.form.get('year')?.invalid && this.form.get('year')?.touched"></i>
                         </span>
-                        <input id="years" type="number" formControlName="year" [(ngModel)]="fechaEstablecida" min="2022" max="2099" step="1"
+                        <input id="years" type="number" formControlName="year" min="2022" max="2099" step="1"
                             required class="form-control">
+                        <!-- <input id="years" type="number" formControlName="year" [(ngModel)]="fechaEstablecida" min="2022" max="2099" step="1"
+                            required class="form-control"> -->
                     </div>
                     <label for="fecha">Fecha Inicio:</label>
                     <div class="input-group mb-3">
@@ -22,7 +24,9 @@
                             [class.green-icon]="this.form.get('FechaInicial')?.valid"
                             [class.red-icon]="this.form.get('FechaInicial')?.invalid && this.form.get('FechaInicial')?.touched"></i>
                         </span>
-                        <input type="date" formControlName="FechaInicial" [(ngModel)]="fechaPorDefectoInicial" required class="form-control">
+                        <input type="date" formControlName="FechaInicial" required class="form-control">
+                        <!-- <input type="date" formControlName="FechaInicial" [(ngModel)]="fechaPorDefectoInicial" required class="form-control"> -->
+                    
                     </div>
                     <label for="fecha">Fecha Fin:</label>
                     <div class="input-group mb-3">
@@ -31,7 +35,8 @@
                             [class.green-icon]="this.form.get('FechaFinal')?.valid"
                             [class.red-icon]="this.form.get('FechaFinal')?.invalid && this.form.get('FechaFinal')?.touched"></i>
                         </span>
-                        <input type="date" formControlName="FechaFinal" [(ngModel)]="fechaPorDefectoFinal" required class="form-control">
+                        <input type="date" formControlName="FechaFinal" required class="form-control">
+                        <!-- <input type="date" formControlName="FechaFinal" [(ngModel)]="fechaPorDefectoFinal" required class="form-control"> -->
                     </div>
                     <label for="fecha">Observación:</label>
                     <div class="input-group mb-3">
@@ -40,8 +45,10 @@
                             [class.green-icon]="this.form.get('Observacion')?.valid"
                             [class.red-icon]="this.form.get('Observacion')?.invalid && this.form.get('Observacion')?.touched"></i>
                         </span>
-                        <input type="text" formControlName="Observacion" [(ngModel)]="Observacion" class="form-control" aria-label="Sizing example input"
+                        <input type="text" formControlName="Observacion" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
+                        <!-- <input type="text" formControlName="Observacion" [(ngModel)]="Observacion" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm"> -->
                     </div>
                 </div>
                 <div class="d-grid gap-2 col-2 mx-auto buttonsyears">
@@ -82,9 +89,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <ag-grid-angular class="ag-theme-alpine" style="height: 480px; width: 800px;" #myDataGrid [rowData]="rowdata" 
-             [columnDefs]="columnDefs">
-            </ag-grid-angular> -->
         </div>
     </div>
 </section>
