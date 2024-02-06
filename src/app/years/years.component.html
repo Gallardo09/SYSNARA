@@ -1,62 +1,53 @@
 <section>
     <div class="sections">
-        <h3 class="fw-bolder">REGISTRAR AÑO ESCOLAR</h3>
-         <form [formGroup]="form" (ngSubmit)="agregarYear()">
+        <h3 class="fw-bolder">{{ accion | uppercase }} AÑO ESCOLAR</h3>
+         <form [formGroup]="form" (ngSubmit)="guardarYears()">
             <div class="borderpanel">
                 <img class="iconoyear" src="assets/iconos/years.png" alt="Sysnara Registrar Años">
                 <div class="formyears">
                     <label for="year" class="col-form-label">Año:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">
-                            <i class="las la-calendar" 
-                            [class.green-icon]="this.form.get('year')?.valid"
-                            [class.red-icon]="this.form.get('year')?.invalid && this.form.get('year')?.touched"></i>
-                        </span>
-                        <input id="years" type="number" formControlName="year" min="2022" max="2099" step="1"
-                            required class="form-control">
-                        <!-- <input id="years" type="number" formControlName="year" [(ngModel)]="fechaEstablecida" min="2022" max="2099" step="1"
-                            required class="form-control"> -->
-                    </div>
-                    <label for="fecha">Fecha Inicio:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">
-                            <i class="las la-calendar-plus"
-                            [class.green-icon]="this.form.get('FechaInicial')?.valid"
-                            [class.red-icon]="this.form.get('FechaInicial')?.invalid && this.form.get('FechaInicial')?.touched"></i>
-                        </span>
-                        <input type="date" formControlName="FechaInicial" required class="form-control">
-                        <!-- <input type="date" formControlName="FechaInicial" [(ngModel)]="fechaPorDefectoInicial" required class="form-control"> -->
-                    
-                    </div>
-                    <label for="fecha">Fecha Fin:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">
-                            <i class="las la-calendar-minus"
-                            [class.green-icon]="this.form.get('FechaFinal')?.valid"
-                            [class.red-icon]="this.form.get('FechaFinal')?.invalid && this.form.get('FechaFinal')?.touched"></i>
-                        </span>
-                        <input type="date" formControlName="FechaFinal" required class="form-control">
-                        <!-- <input type="date" formControlName="FechaFinal" [(ngModel)]="fechaPorDefectoFinal" required class="form-control"> -->
-                    </div>
-                    <label for="fecha">Observación:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">
-                            <i class="las la-file-signature"
-                            [class.green-icon]="this.form.get('Observacion')?.valid"
-                            [class.red-icon]="this.form.get('Observacion')?.invalid && this.form.get('Observacion')?.touched"></i>
-                        </span>
-                        <input type="text" formControlName="Observacion" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                        <!-- <input type="text" formControlName="Observacion" [(ngModel)]="Observacion" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm"> -->
-                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="las la-calendar" 
+                                [class.green-icon]="this.form.get('idaño')?.valid"
+                                [class.red-icon]="this.form.get('idaño')?.invalid && this.form.get('idaño')?.touched"></i>
+                            </span>
+                            <input id="years" type="number" formControlName="idaño" min="2022" max="2099" step="1" required class="form-control">
+                        </div>
+                        <label for="fecha">Fecha Inicio:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="las la-calendar-plus"
+                                [class.green-icon]="this.form.get('añoInicio')?.valid"
+                                [class.red-icon]="this.form.get('añoInicio')?.invalid && this.form.get('añoInicio')?.touched"></i>
+                            </span>
+                            <input type="date" formControlName="añoInicio" required class="form-control">
+                        </div>
+                        <label for="fecha">Fecha Fin:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="las la-calendar-minus"
+                                [class.green-icon]="this.form.get('añoFin')?.valid"
+                                [class.red-icon]="this.form.get('añoFin')?.invalid && this.form.get('añoFin')?.touched"></i>
+                            </span>
+                            <input type="date" formControlName="añoFin" required class="form-control">
+                        </div>
+                        <label for="fecha">Observación:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="las la-file-signature"
+                                [class.green-icon]="this.form.get('observacion')?.valid"
+                                [class.red-icon]="this.form.get('observacion')?.invalid && this.form.get('observacion')?.touched"></i>
+                            </span>
+                            <input type="text" formControlName="observacion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
                 </div>
                 <div class="d-grid gap-2 col-2 mx-auto buttonsyears">
-                    <button [disabled]="this.form.invalid" class="btn btn-primary" type="button" (click)="agregarYear()">
+                    <button [disabled]="this.form.invalid" class="btn btn-primary" type="submit">
                         <span>
                             <i class="fa-regular fa-floppy-disk"></i>
                         </span>
-                        &nbsp;Guardar
+                        &nbsp;{{ accion === 'AGREGAR' ? 'Guardar' : 'Actualizar' }}
                     </button>
                 </div>
                 
@@ -78,14 +69,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let years of listayears">
-                            <td>{{years.year}}</td>
-                            <td>{{years.FechaInicial}}</td>
-                            <td>{{years.FechaFinal}}</td>
-                            <td>{{years.Observacion}}</td>
-                            <td><i class="las la-edit"></i></td>
-                            <td><i class="las la-trash-alt"></i></td>
-                        </tr>
+                        <tr *ngFor="let item of listayears">
+                                <td>{{ item['idaño'] }}</td>
+                                <td>{{ item['añoInicio'] | date:'yyyy-MM-dd' }}</td>
+                                <td>{{ item['añoFin'] | date:'yyyy-MM-dd' }}</td>
+                                <td>{{ item['observacion'] }}</td>
+                            <!--<td>{{ item.idyears }}</td>
+                                <td>{{ item.yearInicio | date:'yyyy-MM-dd' }}</td>
+                                <td>{{ item.yearFin | date:'yyyy-MM-dd' }}</td>
+                                <td>{{ item.observacion }}</td> -->
+                                <td><i (click)="editarYears(item)" class="las la-edit"></i></td>
+                                <td><i (click)="eliminarYear(item['idaño'])" class="las la-trash-alt"></i></td>
+                        </tr>                                                                      
                     </tbody>
                 </table>
             </div>

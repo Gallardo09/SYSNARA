@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, OnInit, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterContentChecked, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 import { HeaderPositionUtils } from 'ag-grid-community';
@@ -8,85 +8,119 @@ import Swal from 'sweetalert2'
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrService } from 'ngx-toastr';
+
 import { ConectdbyearsService } from '../services/conectdbyears.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-years',
   templateUrl: './years.component.html',
-  styleUrls: ['./years.component.css']
+  styleUrls: ['./years.component.css'],
 })
 export class YearsComponent implements OnInit {
-  //Declaración de la propiedad fechaPorDefecto 
-  //fechaPorDefecto?: string; singifica indefinido
-
-  // FECHA POR DEFECTO INICIAL
-  year?: string;
-  // FECHA POR DEFECTO INICIAL
-  FechaInicial?: string;
-  // FECHA POR DEFECTO FINAL
-  FechaFinal?: string;
-  // FECHA POR DEFECTO FINAL
-  Observacion: string = '';
-
-  ngAfterContentChecked(): void {
-    this.changeDetector.detectChanges();
-  }
-  
+  //Declaración de las propiedades
   listayears: any[] = [];
-  // listayears: any[] = [ /*Listas en la table*/];
-  // // listayears: any[] = [ /*Listas en la table*/
-  // //     {year: '2022', FechaInicial: '2022-02-01', FechaFinal: '2022-11-30', Observacion: 'NINGUNA'},
-  // //     {year: '2021', FechaInicial: '2021-02-01', FechaFinal: '2021-11-30', Observacion: 'NINGUNA'},
-  // // ];
-
+  accion = 'AGREGAR';
 
 /*AGREGAR DATOS A LA TABLA CON EL FORMULARIO*/
 form: FormGroup;
+id: number | undefined;
   constructor(
     private fb: FormBuilder, 
     private toastr: ToastrService,
     public changeDetector: ChangeDetectorRef,
-    private _conectdbyearservice: ConectdbyearsService ) {
+    private _Yearsservice:ConectdbyearsService,) {
+    // Crear un formulario reactivo usando FormBuilder
     this.form = this.fb.group({
-    year: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]], 
-    FechaInicial: ['', Validators.required],
-    FechaFinal: ['', Validators.required],
-    Observacion: ['', [Validators.required, Validators.maxLength(15), Validators.minLength(7)]] 
-      })
+      idaño: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]], 
+      añoInicio: ['', Validators.required],
+      añoFin: ['', Validators.required],
+      observacion: ['', [Validators.required, Validators.maxLength(15), Validators.minLength(7)]] 
+    });
   }
 
  ngOnInit() {
-    this.obtenerdatosyears();
-    const fechaActual = new Date();
-    const year = fechaActual.getFullYear();
-    this.year = `${year}`;
-    this.FechaInicial = `${year}-02-01`;
-    this.FechaFinal = `${year}-11-30`;
+    this.obtenerYears(); 
   }
 
-/*FUNCION PARA OBTENER LOS DATOS DEL SERVICE conectdbyearservice*/
-  obtenerdatosyears() {
-    this._conectdbyearservice.getlistyears().subscribe(data => {
-      console.log(data);  
+  obtenerYears(){
+    this._Yearsservice.getlistyears().subscribe(data =>{
+      console.log(data);  // Verifica que los datos se estén recibiendo correctamente
       this.listayears = data;
-      }, error => {
-        console.log(error);
-      })
-  }
+    }, error => {
+      console.log(error);
+    })
+ } 
 
   /*FUNCIÓN EN EL BOTON AGREGAR*/
-  agregarYear(): void{
-    console.log(this.form);
-
+  guardarYears(): void {
+      
     const years: any = {
-      year: this.form.get('year')?.value,
-      FechaInicial: this.form.get('FechaInicial')?.value,
-      FechaFinal: this.form.get('FechaFinal')?.value,
-      Observacion: this.form.get('Observacion')?.value,
+        idaño: this.form.get('idaño')?.value,
+        añoInicio: this.form.get('añoInicio')?.value,
+        añoFin: this.form.get('añoFin')?.value,
+        observacion: this.form.get('Observacion')?.value,
+      };
+
+    if(this.id == undefined){
+   //Agregamos un nuevo registro año.
+        //Conexion con el service _Yearsservice
+        this._Yearsservice.saveyears(years).subscribe(data=>{
+          this.toastr.success('Datos Guardados!', 'Regitrar Año',{ timeOut: 2000 });
+          this.obtenerYears();
+          this.form.reset();
+        }, error =>{
+          console.log(error); //Error mostrado en consola
+          // this.toastr.info(`El año ${this.form.get('idaño')?.value} ya ha sido registrado anteriormente!`, 'Advertencia',{ timeOut: 2000 });
+          //Segunda manera de mostrar el mensaje.
+          const idaño = this.form.get('idaño')?.value;
+          this.toastr.info(`El año ${idaño} ya ha sido registrado anteriormente!`, 'Advertencia', { timeOut: 2000 });
+        })
+    } else {
+      //Editamos un año.
+        years.id = this.id;
+        this._Yearsservice.updateyears(this.id, years).subscribe(data => {
+        this.form.reset();
+        this.accion = 'AGREGAR';
+        this.id = undefined;
+        this.toastr.info(`El año ${this.form.get('idaño')?.value} fue actualizado con éxito!`, 'Actualización',{ timeOut: 1500 });
+        this.obtenerYears();
+      }, 
+      //Por si ocurre un error que me muestre un mensaje. 
+      error =>{
+        console.log(error);
+      })
     }
-    // Utilizamos unshift() en lugar de push() para agregar datos nuevos arriba.
-    this.listayears.unshift(years); 
-    this.toastr.success('Datos Guardados!', 'Regitrar Año',{ timeOut: 2000 });
-    this.form.reset();
+    console.log("Se registro Year:", Number(this.form.get('idaño')?.value));
+    console.log("Se registro FechaInicial:", this.form.get('añoInicio')?.value);
+    console.log("Se registro FechaFinal:", this.form.get('añoFin')?.value);
+    this.obtenerYears();
+  }
+
+  /*FUNCIÓN DELETE / BORRAR AÑO*/
+  eliminarYear(idaño: number){
+    // this.listayears.splice(index,1);
+    this._Yearsservice.deleteyears(idaño).subscribe(data =>{
+      this.toastr.error('El año fue eliminado con exito!','Eliminar');
+      this.obtenerYears();
+    }, error=>{
+        console.log(error);
+        this.toastr.info('El año tiene datos vinculados con otras tablas!','Advertencia');
+    })
+  }
+
+  /*FUNCIÓN UPDATE / EDITAR AÑO*/
+  editarYears(years:any){
+    console.log(years);
+    this.accion = 'EDITAR';
+    this.id = years.id;
+
+    //Funcion para que me muestre los datos en el FORM
+    this.form.patchValue({
+      idaño: years.idaño, 
+      añoInicio: years.añoInicio,
+      añoFin: years.añoFin,
+      observacion: years.observacion,
+    })
   }
 }

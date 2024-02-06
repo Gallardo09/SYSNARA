@@ -24,6 +24,7 @@ import { ImprimirnotasComponent } from './imprimirnotas/imprimirnotas.component'
 import { HistoriaComponent } from './historia/historia.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { ConectdbyearsService } from './services/conectdbyears.service'; 
 
 //Login
 //Dashboard
@@ -82,7 +83,7 @@ const routes: Routes = [
   [
     RouterModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ConectdbyearsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

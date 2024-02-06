@@ -1,1 +1,24 @@
-<p>reportematricula works!</p>
+<div class="table-wrapper">
+    <table class="table table-rounded">
+        <thead class="headcolum">
+            <tr>
+                <th scope="col">Año</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Fin</th>
+                <th scope="col">Observación</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listayears">
+                <td>{{ item['idaño'] }}</td>
+                <td>{{ item['añoInicio'] | date:'yyyy-MM-dd' }}</td>
+                <td>{{ item['añoFin'] | date:'yyyy-MM-dd' }}</td>
+                <td>{{ item['observacion'] }}</td>
+                <td><i class="las la-edit"></i></td>
+                <td><i class="las la-trash-alt"></i></td>
+            </tr>                                                                      
+        </tbody>
+    </table>
+</div>

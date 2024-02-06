@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((data) => {
       this.isLoggedIn = data; // Actualizar el valor de isLoggedIn en el componente padre
       this.showLogin = !data; // Actualizar la variable showLogin
-      console.log(`El valor de la variable cambio a: ${data}`);
+      // console.log(`El valor de la variable antes: ${!data}`);
+      // console.log(`El valor de la variable cambio a: ${data}`);
     });
 
     setTimeout(() => {
